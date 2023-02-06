@@ -2065,7 +2065,7 @@ ul.tick li {
 
 ul.tick li {
     padding: 8px 0 0 30px;
-    background: url('./images/check-golden.svg') no-repeat left 10px;
+    background: url('../images/check-golden.svg') no-repeat left 10px;
     background-size: 15px 15px;
 }
 
@@ -2075,4 +2075,17 @@ ul.tick li {
     max-width: 300px;
     right: 20px;
     top: 20px;
+}
+
+.top-section {
+    /*background-image: url("../images/body-bg-1.webp");*/
+    /*background-image: url("public/images/body-bg-1.webp");*/
+    background-repeat: no-repeat;
+    background-position: top right;
+    background-size: contain;
+}
+
+.text12 {
+    font-size: 13px;
+    font-weight: 400;
 }

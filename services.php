@@ -1,16 +1,7 @@
 <?php require_once("./inc/top.php");?>
 <body class="home">
 <?php require_once("./inc/header.php");?>
-<style>
-        .service {
-            /*background-image: url("../images/body-bg-1.webp");*/
-            /*background-image: url("public/images/body-bg-1.webp");*/
-            background-repeat: no-repeat;
-            background-position: top right;
-            background-size: contain;
-        }
-    </style>
-<div class="service" style="background-image: url('images/body-bg-1.webp')">
+<div class="top-section" style="background-image: url('images/body-bg-1.webp')">
         <section class="container-fluid services-banner-section">
             <div class="container intro">
                 <div class="row">
@@ -32,10 +23,10 @@
                     </div>
                     <div class="col-sm-12 col-lg-6 d-none d-lg-block aos-init aos-animate" data-aos="fade-up">
                         <div class="mt2 w100">
-                            <!-- <picture>
+                            <picture>
                                 <img class="img-fluid" src="./images/boy-and-girl.png" alt="uk quran academy" />
                             </picture>
-                        </div>-->
+                        </div>
 
                         </div>
                     </div>
