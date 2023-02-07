@@ -69,7 +69,7 @@
                         <div class="menu-content">
 
 
-                            <form action="/contact/submit" class="form" method="post" enctype="multipart/form-data">
+                            <form action="" class="form" method="post" enctype="multipart/form-data">
                                 <input type="hidden" name="_token" value="ooSSjrQTNqDRd0wU3rZHFZ5yO4xVv6jruIgIt0em">
                                 <div class="form-group mb-3">
 
@@ -98,7 +98,7 @@
                 <div class="row mt2">
                     <div class="col-12">
                         <p class="color-wc">
-                            © Copyright 2022 Learn Quran United kingdom. All Rights Reserved
+                            © Copyright <?php echo date("Y")?> Learn Quran United kingdom. All Rights Reserved
                         </p>
                     </div>
                 </div>

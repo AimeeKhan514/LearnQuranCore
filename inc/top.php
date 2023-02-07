@@ -1,3 +1,13 @@
+<?php
+ob_start();
+session_start();
+require_once("inc/config.php");
+require_once("inc/functions.php");
+$pageName =  basename($_SERVER["PHP_SELF"],".php");
+$msg = "";
+// dArr($_SESSION);
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +38,7 @@
         content="For learning the Holy Quran online in Uk, Learnquran.uk provides the best and experienced male and female teachers. Learn Quranic letters with Tajweed.">
     <meta name="keywords"
         content=" UK Learn Quran Academy ,Improve your Tajweed rules With Us, Learn Tajweed Rules,Arabic Alphabet,Online Quran,want to learn tajweed rules in uk,Uk base quran acadmey,learn quran online,learn arabic, learn quran online uk,online quran classes for kids,learn Quran online with tajweed, learn quran for kids,quran classes for beginners,quran recitation classes online,learn to read Quran online, learning the Quran for beginners,learning the Quran for kids,Quran classes for kids, Quran learning for kids">
-    <title>UK Learn Quran Academy | Improve your Tajweed rules With Us </title>
+    <title>Learn Quran | <?php echo ucwords(str_replace("-"," ",$pageName))?> | Improve your Tajweed rules With Us </title>
     <meta name="robots" content="follow,index," />
     <link rel="canonical" href="https://learnquran.uk" />
     <!-- Google / Search Engine Tags -->
@@ -51,8 +61,9 @@
     <meta name="twitter:image" content="https://learnquran.uk/images/snap-min.png">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <link rel="icon" type="image/x-icon" href="./images/logo.png">
+       <!--Favicon-->
+   <link rel="shortcut icon" href="./images/logo.png" type="image/x-icon">
+   <link rel="icon" href="./images/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="./css/animate.min.css">
     <link rel="stylesheet" href="./css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
@@ -65,8 +76,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
     <link rel="stylesheet" href="./css/slick.css">
     <link rel="stylesheet" href="./css/slick-theme.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/custom.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/customF.css">
 <!-- add your custom CSS -->
 <style>
 </style>

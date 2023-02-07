@@ -38,7 +38,7 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="index">
+                                    <a class="nav-link <?php if($pageName == "index" || $pageName == "index"){echo "active";}else{echo "";}?>" aria-current="page" href="index">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1"
                                             x="0px" y="0px" viewBox="0 0 20 20"
@@ -59,7 +59,7 @@
                                         Home</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="services">
+                                    <a class="nav-link <?php if($pageName == "services" || $pageName == "services"){echo "active";}else{echo "";}?>" href="services">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1"
                                             x="0px" y="0px" viewBox="0 0 20 20"
@@ -76,7 +76,7 @@
                                         Services</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="about">
+                                    <a class="nav-link <?php if($pageName == "about" || $pageName == "about"){echo "active";}else{echo "";}?>" href="about">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1"
                                             x="0px" y="0px" viewBox="0 0 20 20"
@@ -94,7 +94,7 @@
                                         About</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="packages">
+                                    <a class="nav-link <?php if($pageName == "packages" || $pageName == "packages"){echo "active";}else{echo "";}?>" href="packages">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                             xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1"
                                             x="0px" y="0px" viewBox="0 0 20 20"
@@ -112,7 +112,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="contact"><svg
+                                    <a class="nav-link <?php if($pageName == "contact" || $pageName == "contact"){echo "active";}else{echo "";}?>" href="contact"><svg
                                             xmlns="http://www.w3.org/2000/svg"
                                             xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1"
                                             x="0px" y="0px" viewBox="0 0 20 20"

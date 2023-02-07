@@ -1,0 +1,52 @@
+<div class="nk-sidebar">
+<div class="nk-nav-scroll">
+    <ul class="metismenu" id="menu">
+        <li class="nav-label"><?php echo $_SESSION["ADMIN_LOGIN"]["NAME"]?></li>
+        <!-- <li>
+            <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
+            </a>
+            <ul aria-expanded="false">
+                <li><a href="./index">Home 1</a></li>
+                <li><a href="./index-2">Home 2</a></li>
+            </ul>
+        </li> -->
+
+        <li>
+            <a href="dashboard" aria-expanded="false">
+                <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
+            </a>
+        </li>
+        <li class="<?php if($pageName == "manage-categories" || $pageName == "trashed-categories"){echo "active";}else{echo "";}?>">
+            <a href="categories" aria-expanded="false" class="<?php if($pageName == "manage-categories" || $pageName == "trashed-categories"){echo "active";}else{echo "";}?>">
+                <i class="icon-menu menu-icon"></i><span class="nav-text">Categories</span>
+            </a>
+        </li>
+        <li class="<?php if($pageName == "manage-sub-categories" || $pageName == "trashed-sub-categories"){echo "active";}else{echo "";}?>">
+            <a href="sub-categories" aria-expanded="false" class="<?php if($pageName == "manage-sub-categories" || $pageName == "trashed-sub-categories"){echo "active";}else{echo "";}?>">
+                <i class="icon-list menu-icon"></i><span class="nav-text">Sub Categories</span>
+            </a>
+        </li>
+        <li class="<?php if($pageName == "manage-posts" || $pageName == "trashed-posts"){echo "active";}else{echo "";}?>">
+            <a href="posts" aria-expanded="false" class="<?php if($pageName == "manage-posts" || $pageName == "trashed-posts"){echo "active";}else{echo "";}?>">
+                <i class="icon-docs menu-icon"></i><span class="nav-text">Posts</span>
+            </a>
+        </li>
+<?php
+if($_SESSION["ADMIN_LOGIN"]["ROLE"]==1){
+?>
+        <li class="<?php if($pageName == "manage-profile" || $pageName == "trashed-profile"){echo "active";}else{echo "";}?>">
+            <a href="profile" aria-expanded="false" class="<?php if($pageName == "manage-profile" || $pageName == "trashed-profile"){echo "active";}else{echo "";}?>">
+                <i class="icon-people menu-icon"></i><span class="nav-text">Profile</span>
+            </a>
+        </li>
+<?php }?>
+        <li class="<?php if($pageName == "users" || $pageName == "trashed-users"){echo "active";}else{echo "";}?>">
+            <a href="users" aria-expanded="false" class="<?php if($pageName == "users" || $pageName == "trashed-users"){echo "active";}else{echo "";}?>">
+                <i class="icon-user menu-icon"></i><span class="nav-text">Users</span>
+            </a>
+        </li>
+
+    </ul>
+</div>
+</div>
