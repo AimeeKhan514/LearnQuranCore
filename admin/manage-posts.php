@@ -32,7 +32,7 @@ if (isset($_GET["id"]) && $_GET["id"] != "" && $_GET["id"] > 0) {
     $description = $row["description"];
 }
 if (isset($_POST["submit"])) {
-    $user_id = getSaveValue($conn, $_SESSION["isLoggedIn"]["ID"]);
+    $user_id = getSaveValue($conn, $_SESSION["ADMIN_LOGIN"]["ID"]);
     $category_id = getSaveValue($conn, $_POST["category_id"]);
     $subcategory_id = getSaveValue($conn, $_POST["subcategory_id"]);
     $title = getSaveValue($conn, $_POST["title"]);
@@ -69,7 +69,7 @@ if (isset($_POST["submit"])) {
     
 
     $description = getSaveValue($conn, $_POST["description"]);
-    $role = $_SESSION["isLoggedIn"]["ROLE"];
+    $role = $_SESSION["ADMIN_LOGIN"]["ROLE"];
     // $role = getSaveValue($conn, $_POST["role"]);
 
 

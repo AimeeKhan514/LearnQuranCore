@@ -16,8 +16,8 @@ if (isset($_GET["id"]) && $_GET["id"] != "" && $_GET["id"] > 0) {
 
     $id = $_GET["id"];
     
-    if($id == md5($_SESSION["isLoggedIn"]["ID"])){
-        $id = $_SESSION["isLoggedIn"]["ID"];
+    if($id == md5($_SESSION["ADMIN_LOGIN"]["ID"])){
+        $id = $_SESSION["ADMIN_LOGIN"]["ID"];
     }else{
         header("location:dashboard");
         die();
@@ -52,17 +52,17 @@ if (isset($_POST["submit"])) {
         $image = $_FILES["image"]["name"];
         $image = rand(111111111,999999999)."_".$image;
         $image_tmp = $_FILES["image"]["tmp_name"];
-        move_uploaded_file($image_tmp,'../images/admins/'.$image);
+        move_uploaded_file($image_tmp,'../images/dashboard/admins/'.$image);
         
     }
     if (isset($_GET["id"]) && $_GET["id"] != "" && $_GET["id"] > 0) {
         $res = mysqli_query($conn, "UPDATE `$table` SET `name`='$name',`email`='$email',`password`='$password',`image`='$image',`role`='$role' WHERE `id`='$id'");
         if ($res) {
 
-            $_SESSION["isLoggedIn"]["NAME"] = $name;
-            $_SESSION["isLoggedIn"]["EMAIL"] = $email;
-            $_SESSION["isLoggedIn"]["PASSWORD"] = $password;
-            $_SESSION["isLoggedIn"]["IMAGE"] = $image;
+            $_SESSION["ADMIN_LOGIN"]["NAME"] = $name;
+            $_SESSION["ADMIN_LOGIN"]["EMAIL"] = $email;
+            $_SESSION["ADMIN_LOGIN"]["PASSWORD"] = $password;
+            $_SESSION["ADMIN_LOGIN"]["IMAGE"] = $image;
 
             $_SESSION["msg"] = '<div class="alert alert-success alert-dismissible fade show msg">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
@@ -157,7 +157,7 @@ echo $msg;
                                                 </div>
                                             </div>
                                             <?php
-                                    if($_SESSION["isLoggedIn"]["ROLE"]==1){
+                                    if($_SESSION["ADMIN_LOGIN"]["ROLE"]==1){
                                     ?>
                                             <div class="col-md-6">
                                                 <div class="form-group ">
@@ -199,7 +199,7 @@ echo $msg;
                                                 </div>
                                             </div>
                                             <?php
-if($_SESSION["isLoggedIn"]["ROLE"]==1){
+if($_SESSION["ADMIN_LOGIN"]["ROLE"]==1){
 ?>
                                             <div class="col-md-6">
                                                 <div class="form-group ">

@@ -17,19 +17,19 @@
                 <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
             </a>
         </li>
-        <li class="<?php if($pageName == "manage-categories" || $pageName == "trashed-categories"){echo "active";}else{echo "";}?>">
-            <a href="categories" aria-expanded="false" class="<?php if($pageName == "manage-categories" || $pageName == "trashed-categories"){echo "active";}else{echo "";}?>">
-                <i class="icon-menu menu-icon"></i><span class="nav-text">Categories</span>
+        <li class="<?php if($pageName == "manage-teachers" || $pageName == "trashed-teachers"){echo "active";}else{echo "";}?>">
+            <a href="teachers" aria-expanded="false" class="<?php if($pageName == "manage-teachers" || $pageName == "trashed-teachers"){echo "active";}else{echo "";}?>">
+                <i class="icon-menu menu-icon"></i><span class="nav-text">Teachers</span>
             </a>
         </li>
-        <li class="<?php if($pageName == "manage-sub-categories" || $pageName == "trashed-sub-categories"){echo "active";}else{echo "";}?>">
-            <a href="sub-categories" aria-expanded="false" class="<?php if($pageName == "manage-sub-categories" || $pageName == "trashed-sub-categories"){echo "active";}else{echo "";}?>">
-                <i class="icon-list menu-icon"></i><span class="nav-text">Sub Categories</span>
+        <li class="<?php if($pageName == "manage-students" || $pageName == "trashed-students"){echo "active";}else{echo "";}?>">
+            <a href="students" aria-expanded="false" class="<?php if($pageName == "manage-students" || $pageName == "trashed-students"){echo "active";}else{echo "";}?>">
+                <i class="icon-list menu-icon"></i><span class="nav-text">Students</span>
             </a>
         </li>
-        <li class="<?php if($pageName == "manage-posts" || $pageName == "trashed-posts"){echo "active";}else{echo "";}?>">
-            <a href="posts" aria-expanded="false" class="<?php if($pageName == "manage-posts" || $pageName == "trashed-posts"){echo "active";}else{echo "";}?>">
-                <i class="icon-docs menu-icon"></i><span class="nav-text">Posts</span>
+        <li class="<?php if($pageName == "manage-classes" || $pageName == "trashed-classes"){echo "active";}else{echo "";}?>">
+            <a href="classes" aria-expanded="false" class="<?php if($pageName == "manage-classes" || $pageName == "trashed-classes"){echo "active";}else{echo "";}?>">
+                <i class="icon-docs menu-icon"></i><span class="nav-text">Classes</span>
             </a>
         </li>
 <?php

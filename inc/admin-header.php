@@ -49,7 +49,7 @@ Header start
             <li class="icons dropdown">
                 <div class="user-img c-pointer position-relative" data-toggle="dropdown">
                     <span class="activity active"></span>
-                    <img src="../images/admins/<?php echo $_SESSION["ADMIN_LOGIN"]["IMAGE"]?>" height="40" width="40" alt="">
+                    <img src="../images/dashboard/admins/<?php if($_SESSION["ADMIN_LOGIN"]["IMAGE"]=="" || $_SESSION["ADMIN_LOGIN"]["IMAGE"]==null){echo "manager.png";}else{echo $_SESSION["ADMIN_LOGIN"]["IMAGE"];}?>" height="40" width="40" alt="">
                 </div>
                 <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
                     <div class="dropdown-content-body">

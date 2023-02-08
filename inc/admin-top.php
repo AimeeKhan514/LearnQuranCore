@@ -20,7 +20,7 @@ $msg = "";
     <!-- theme meta -->
     <meta name="theme-name" content="Aimee Khan" />
 
-    <title><?php echo ucwords(str_replace("-"," ",$pageName))?></title>
+    <title><?php echo ucwords(str_replace("-"," ",$pageName))?> | Learn Quran</title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon.png">
 

@@ -52,7 +52,7 @@ require_once("../inc/admin-sidebar.php")
                     <div class="col-lg-3 col-sm-6">
                         <div class="card gradient-1">
                             <div class="card-body">
-                                <h3 class="card-title text-white">Total Categories</h3>
+                                <h3 class="card-title text-white">Total Classes</h3>
                                 <div class="d-inline-block">
                                     <h2 class="text-white">
                                         <?php
@@ -68,7 +68,7 @@ require_once("../inc/admin-sidebar.php")
                     <div class="col-lg-3 col-sm-6">
                         <div class="card gradient-2">
                             <div class="card-body">
-                                <h3 class="card-title text-white">Total Sub Categories</h3>
+                                <h3 class="card-title text-white">Total Teachers</h3>
                                 <div class="d-inline-block">
                                     <h2 class="text-white">
                                         <?php
@@ -84,7 +84,7 @@ require_once("../inc/admin-sidebar.php")
                     <div class="col-lg-3 col-sm-6">
                         <div class="card gradient-3">
                             <div class="card-body">
-                                <h3 class="card-title text-white">Total Posts</h3>
+                                <h3 class="card-title text-white">Total Students</h3>
                                 <div class="d-inline-block">
                                     <h2 class="text-white">
                                         <?php
@@ -129,7 +129,7 @@ require_once("../inc/admin-sidebar.php")
                                             <?php
                                             //  echo getTotalRecords($conn, 'categories','0');?>D
                                         </h2>
-                                        <h5 class="card-widget__subtitle">Add Categories</h5>
+                                        <h5 class="card-widget__subtitle">Add Teachers</h5>
                                     </div>
                                 </div>
                             </div>
@@ -147,7 +147,7 @@ require_once("../inc/admin-sidebar.php")
                                             <?php
                                             //  echo getTotalRecords($conn, 'subcategories','0');?>D
                                         </h2>
-                                        <h5 class="card-widget__subtitle">Add Sub Categories</h5>
+                                        <h5 class="card-widget__subtitle">Add Students</h5>
                                     </div>
                                 </div>
                             </div>
@@ -166,7 +166,7 @@ require_once("../inc/admin-sidebar.php")
                                             <?php
                                             //  echo getTotalRecords($conn, 'posts','0');?>D
                                         </h2>
-                                        <h5 class="card-widget__subtitle">Add Posts</h5>
+                                        <h5 class="card-widget__subtitle">Add Classes</h5>
                                     </div>
                                 </div>
                             </div>

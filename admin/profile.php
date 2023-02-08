@@ -1,7 +1,7 @@
 <?php
 require_once("../inc/admin-top.php");
 require_once("../inc/getData.php");
-if($_SESSION["isLoggedIn"]["ROLE"]==1){
+if($_SESSION["ADMIN_LOGIN"]["ROLE"]==1){
 
 
 if(isset($_SESSION["msg"])){
@@ -97,7 +97,7 @@ require_once("../inc/breadcrumbs.php")
                                                 <td><?php echo $row["password"];?></td>
                                                 
                                                 <td>
-                                                <img src="../images/admins/<?php echo $row["image"];?>" class=" rounded-circle mr-3 max-image-60px" alt="">
+                                                <img src="../images/dashboard/admins/<?php if($row["image"]=="" || $row["image"]==null){echo "manager.png";}else{echo $row["image"];}?>" class=" rounded-circle mr-3 max-image-60px" alt="">
                                                 </td>
                                                 <td>
                                                 <?php if($row["role"]==1){echo "Admin";}else{echo "Editor";}?>
