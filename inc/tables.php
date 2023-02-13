@@ -8,8 +8,11 @@ if($pageName == "manage-sub-categories" || $pageName == "sub-categories" || $pag
 if($pageName == "users" || $pageName == "trashed-users"){
     $table = "users";
 }
-if($pageName == "manage-posts" || $pageName == "posts" || $pageName == "trashed-posts"){
-    $table = "posts";
+if($pageName == "manage-chapters" || $pageName == "chapters" || $pageName == "trashed-chapters"){
+    $table = "chapters";
+}
+if($pageName == "manage-chapters-details" || $pageName == "chapters-details" || $pageName == "trashed-chapters-details"){
+    $table = "chaptersdetails";
 }
 if($pageName == "manage-profile" || $pageName == "profile" || $pageName == "trashed-profile"){
     $table = "admins";

@@ -27,6 +27,16 @@
                 <i class="icon-menu menu-icon"></i><span class="nav-text">Course Sub Categories</span>
             </a>
         </li>
+        <li class="<?php if($pageName == "manage-chapters" || $pageName == "trashed-chapters"){echo "active";}else{echo "";}?>">
+            <a href="chapters" aria-expanded="false" class="<?php if($pageName == "manage-chapters" || $pageName == "trashed-chapters"){echo "active";}else{echo "";}?>">
+                <i class="icon-menu menu-icon"></i><span class="nav-text">Course Chapters</span>
+            </a>
+        </li>
+        <li class="<?php if($pageName == "manage-chapters-details" || $pageName == "trashed-chapters-details"){echo "active";}else{echo "";}?>">
+            <a href="chapters-details" aria-expanded="false" class="<?php if($pageName == "manage-chapters-details" || $pageName == "trashed-chapters-details"){echo "active";}else{echo "";}?>">
+                <i class="icon-menu menu-icon"></i><span class="nav-text">Course Chapters details</span>
+            </a>
+        </li>
         <li class="<?php if($pageName == "manage-teachers" || $pageName == "trashed-teachers"){echo "active";}else{echo "";}?>">
             <a href="teachers" aria-expanded="false" class="<?php if($pageName == "manage-teachers" || $pageName == "trashed-teachers"){echo "active";}else{echo "";}?>">
                 <i class="icon-menu menu-icon"></i><span class="nav-text">Teachers</span>
