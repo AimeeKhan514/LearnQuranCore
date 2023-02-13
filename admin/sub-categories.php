@@ -75,6 +75,9 @@ if($_SESSION["ADMIN_LOGIN"]["ROLE"]==1){
                                                 <th>Id</th>
                                                 <th>Categories</th>
                                                 <th>Title</th>
+                                                <th>Image</th>
+                                                <th>Age</th>
+                                                <th>Description</th>
                                                 <th>Status</th>
                                                 <th>Added On</th>
                                                 <th>Actions</th>
@@ -104,6 +107,13 @@ if($_SESSION["ADMIN_LOGIN"]["ROLE"]==1){
                                                     ;?>
                                             </td>
                                                 <td><?php echo $row["title"];?></td>
+                                                <td>
+                                                <img src="../images/dashboard/sub-categories/<?php if($row["image"]=="" || $row["image"]==null){echo "sub-categories.png";}else{echo $row["image"];}?>" class=" rounded-circle mr-3 max-image-60px" alt="">
+                                                </td>
+                                                <td><?php echo $row["age"];?></td>
+                                                <td>
+                                                <p class="text-truncate" style="max-width:100px ;"  data-toggle="tooltip" data-placement="left" title="<?php echo strip_tags(html_entity_decode($row["description"]));?>"><?php echo strip_tags(html_entity_decode($row["description"]));?></p>
+                                            </td>
                                                 <td><?php 
                                                 if($row["status"]==1){
                                                     echo '<a href="?action=deactive&id='.$row["id"].'" class="btn btn-sm btn-success bg-gradient">Active</a>';

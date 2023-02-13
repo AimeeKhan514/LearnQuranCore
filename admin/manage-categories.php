@@ -106,7 +106,7 @@ require_once("../inc/breadcrumbs.php")
                                 <label class="col-form-label" for="title">Title <span class="text-danger">*</span>
                                 </label>
                                 <div class="">
-                                    <input type="text" class="form-control" id="title" name="title" placeholder="E.g. Fashion" value="<?php echo $title;?>">
+                                    <input type="text" class="form-control" id="title" name="title" placeholder="E.g. Regular Courses" value="<?php echo $title;?>">
                                 </div>
                             </div>
                        

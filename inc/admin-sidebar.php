@@ -17,6 +17,16 @@
                 <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
             </a>
         </li>
+        <li class="<?php if($pageName == "manage-categories" || $pageName == "trashed-categories"){echo "active";}else{echo "";}?>">
+            <a href="categories" aria-expanded="false" class="<?php if($pageName == "manage-categories" || $pageName == "trashed-categories"){echo "active";}else{echo "";}?>">
+                <i class="icon-menu menu-icon"></i><span class="nav-text">Course Categories</span>
+            </a>
+        </li>
+        <li class="<?php if($pageName == "manage-sub-categories" || $pageName == "trashed-sub-categories"){echo "active";}else{echo "";}?>">
+            <a href="sub-categories" aria-expanded="false" class="<?php if($pageName == "manage-sub-categories" || $pageName == "trashed-sub-categories"){echo "active";}else{echo "";}?>">
+                <i class="icon-menu menu-icon"></i><span class="nav-text">Course Sub Categories</span>
+            </a>
+        </li>
         <li class="<?php if($pageName == "manage-teachers" || $pageName == "trashed-teachers"){echo "active";}else{echo "";}?>">
             <a href="teachers" aria-expanded="false" class="<?php if($pageName == "manage-teachers" || $pageName == "trashed-teachers"){echo "active";}else{echo "";}?>">
                 <i class="icon-menu menu-icon"></i><span class="nav-text">Teachers</span>
