@@ -17,6 +17,9 @@ if($pageName == "manage-chapters-details" || $pageName == "chapters-details" || 
 if($pageName == "manage-profile" || $pageName == "profile" || $pageName == "trashed-profile"){
     $table = "admins";
 }
+if($pageName == "manage-teachers" || $pageName == "teachers" || $pageName == "trashed-teachers"){
+    $table = "teachers";
+}
 
 
 ?>

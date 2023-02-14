@@ -108,7 +108,9 @@ if($_SESSION["ADMIN_LOGIN"]["ROLE"]==1){
                                             </td>
                                                 <td><?php echo $row["title"];?></td>
                                                 <td>
+                                                    <a href="../images/dashboard/sub-categories/<?php if($row["image"]=="" || $row["image"]==null){echo "sub-categories.png";}else{echo $row["image"];}?>" target="_blank">
                                                 <img src="../images/dashboard/sub-categories/<?php if($row["image"]=="" || $row["image"]==null){echo "sub-categories.png";}else{echo $row["image"];}?>" class=" rounded-circle mr-3 max-image-60px" alt="">
+                                                </a>
                                                 </td>
                                                 <td><?php echo $row["age"];?></td>
                                                 <td>

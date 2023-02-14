@@ -18,6 +18,20 @@
         .catch( error => {
             console.error( error );
         } );
+        ClassicEditor
+        .create( document.querySelector( '#experience' ), {
+      removePlugins: ['CKFinderUploadAdapter', 'CKFinder', 'EasyImage', 'Image', 'ImageCaption', 'ImageStyle', 'ImageToolbar', 'ImageUpload', 'MediaEmbed'],
+    } )
+        .catch( error => {
+            console.error( error );
+        } );
+        ClassicEditor
+        .create( document.querySelector( '#address' ), {
+      removePlugins: ['CKFinderUploadAdapter', 'CKFinder', 'EasyImage', 'Image', 'ImageCaption', 'ImageStyle', 'ImageToolbar', 'ImageUpload', 'MediaEmbed'],
+    } )
+        .catch( error => {
+            console.error( error );
+        } );
         $(".msg").fadeTo(2500,0.7).fadeOut(2500);
     </script>
 

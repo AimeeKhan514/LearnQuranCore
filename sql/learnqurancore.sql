@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 13, 2023 at 04:48 PM
+-- Generation Time: Feb 14, 2023 at 04:06 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -44,7 +44,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `password`, `image`, `role`, `status`, `added_on`, `trashed_on`) VALUES
-(1, 'admin', 'admin@mail.com', '0e7517141fb53f21ee439b355b5a1d0a', 'manager.png', 1, 1, '2023-02-08 07:19:08', ''),
+(1, 'admin', 'admin@mail.com', '0e7517141fb53f21ee439b355b5a1d0a', 'manager.png', 1, 1, '2023-02-14 07:57:35', ''),
 (2, 'Editor', 'editor@mail.com', '9888593f48ba9b1a34b7465709975c8a', '', 2, 1, '2023-02-09 11:16:28', '');
 
 -- --------------------------------------------------------
@@ -66,7 +66,9 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `title`, `status`, `added_on`, `trashed_on`) VALUES
-(1, 'Regular Courses', 1, '2023-02-13 07:27:40', '');
+(1, 'Regular Courses', 1, '2023-02-13 07:27:40', ''),
+(2, 'Addition Courses', 1, '2023-02-14 06:39:58', ''),
+(3, 'Learning Material', 1, '2023-02-14 06:40:19', '');
 
 -- --------------------------------------------------------
 
@@ -90,7 +92,11 @@ CREATE TABLE `chapters` (
 --
 
 INSERT INTO `chapters` (`id`, `subcategory_id`, `title`, `description`, `image`, `status`, `added_on`, `trashed_on`) VALUES
-(1, 1, 'chapter 1', '&lt;p&gt;this is chapter 1&lt;/p&gt;', '762593963_1.jpg', 1, '2023-02-13 15:14:40', '');
+(1, 1, 'Norani-Q-Chapter No 1', '&lt;p&gt;Chapter No 1&lt;/p&gt;', '933703372_Norani-Qaida.jpeg', 1, '2023-02-14 06:48:29', ''),
+(2, 1, 'Norani-Q-Chapter No 2', '&lt;p&gt;Harakat (Movements)&lt;/p&gt;', '396567201_Norani-Qaida.jpeg', 1, '2023-02-14 06:48:58', ''),
+(3, 1, 'Norani-Q-Chapter No 3', '&lt;p&gt;Exercises Mud-Shud&lt;/p&gt;', '629443712_Norani-Qaida.jpeg', 1, '2023-02-14 06:49:27', ''),
+(4, 3, 'Ehsanul Qawaid', '&lt;p&gt;Ehsanul Qawaid&lt;/p&gt;', '913161131_Ahsan-Al-Qawaed.jpeg', 1, '2023-02-14 06:54:08', ''),
+(5, 4, '1-Kalima Tayyibah', '&lt;p&gt;Read Kalima Tayyibah.&lt;/p&gt;', '243796490_Read Kalima Tayyibah..jpeg', 1, '2023-02-14 06:55:21', '');
 
 -- --------------------------------------------------------
 
@@ -114,7 +120,9 @@ CREATE TABLE `chaptersdetails` (
 --
 
 INSERT INTO `chaptersdetails` (`id`, `subcategory_id`, `chapter_id`, `title`, `image`, `status`, `added_on`, `trashed_on`) VALUES
-(1, 1, 1, 'Page 2', '687770307_1.jpg', 1, '2023-02-13 15:48:02', '');
+(1, 1, 1, 'Page No 1', '489079858_Page No 1.jpeg', 1, '2023-02-14 06:56:32', ''),
+(2, 1, 1, 'Page No 2', '534358642_Page No 2.jpeg', 1, '2023-02-14 06:56:50', ''),
+(3, 1, 1, 'Page No 3', '790457131_Page No 3.jpeg', 1, '2023-02-14 06:57:06', '');
 
 -- --------------------------------------------------------
 
@@ -139,7 +147,47 @@ CREATE TABLE `subcategories` (
 --
 
 INSERT INTO `subcategories` (`id`, `category_id`, `title`, `description`, `age`, `image`, `status`, `added_on`, `trashed_on`) VALUES
-(1, 1, 'Norani Qaida', '&lt;p&gt;This is a text message1&lt;/p&gt;', '10', '252121773_1.jpg', 1, '2023-02-13 12:40:19', '');
+(1, 1, 'Norani Qaida', '&lt;p&gt;Norani Qaida&lt;/p&gt;', '5', '164010855_Norani-Qaida.jpeg', 1, '2023-02-14 06:41:34', ''),
+(3, 1, 'Ahsan Al Qawaed', '&lt;p&gt;For Beginners&lt;/p&gt;', '10', '197086666_Ahsan-Al-Qawaed.jpeg', 1, '2023-02-14 06:43:19', ''),
+(4, 2, '6 Kalmas', '&lt;p&gt;all 6 kalmas&lt;/p&gt;', '9', '270442778_6-kalmas.jpeg', 1, '2023-02-14 06:44:25', ''),
+(5, 2, 'Duas Section 1', '&lt;p&gt;Basic Duas Section 1 for Beginners&lt;/p&gt;', '1', '838008285_Duas.png', 1, '2023-02-14 06:45:15', ''),
+(6, 2, 'Duas Section 2', '&lt;p&gt;Basic Duas Section 1 for Beginners&lt;/p&gt;', '1', '979800098_Duas.png', 1, '2023-02-14 06:45:49', ''),
+(7, 3, '3 DUAS', '&lt;p&gt;A Shiny Day&lt;/p&gt;', '5', '941984478_3-DUAS.jpeg', 1, '2023-02-14 06:47:27', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `teachers`
+--
+
+CREATE TABLE `teachers` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `father_name` varchar(255) NOT NULL,
+  `cnic` varchar(255) NOT NULL,
+  `nationality` varchar(255) NOT NULL,
+  `phone1` varchar(255) NOT NULL,
+  `phone2` varchar(255) NOT NULL,
+  `gender` tinyint(4) NOT NULL,
+  `marital_status` varchar(255) NOT NULL,
+  `qualification` text NOT NULL,
+  `experience` text NOT NULL,
+  `address` text NOT NULL,
+  `bank_account_title` varchar(255) NOT NULL,
+  `bank_name` varchar(255) NOT NULL,
+  `bank_branch_code` varchar(255) NOT NULL,
+  `bank_account_number` varchar(255) NOT NULL,
+  `zoom_username` varchar(255) NOT NULL,
+  `zoom_id` varchar(255) NOT NULL,
+  `zoom_password` varchar(255) NOT NULL,
+  `added_by` tinyint(4) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `added_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `trashed_on` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
@@ -176,6 +224,12 @@ ALTER TABLE `subcategories`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `teachers`
+--
+ALTER TABLE `teachers`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -189,25 +243,31 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `chapters`
 --
 ALTER TABLE `chapters`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `chaptersdetails`
 --
 ALTER TABLE `chaptersdetails`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `subcategories`
 --
 ALTER TABLE `subcategories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `teachers`
+--
+ALTER TABLE `teachers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

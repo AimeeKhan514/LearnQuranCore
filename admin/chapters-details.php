@@ -118,7 +118,11 @@ require_once("../inc/breadcrumbs.php")
                                             </td>
                                                 <td><?php echo $row["title"];?></td>
                                                 <td>
-                                                <img src="../images/dashboard/chapters-details/<?php echo $row["image"];?>" class="rounded-circle mr-3 max-image-60px" alt="">
+                                                <td>
+                                                <a href="../images/dashboard/chapters-details/<?php if($row["image"]=="" || $row["image"]==null){echo "chapters-details.png";}else{echo $row["image"];}?>" target="_blank">
+                                                <img src="../images/dashboard/chapters-details/<?php if($row["image"]=="" || $row["image"]==null){echo "chapters-details.png";}else{echo $row["image"];}?>" class=" rounded-circle mr-3 max-image-60px" alt="">
+                                                </a>
+                                                </td>
                                                 </td>
                                                 <td><?php 
                                                 if($row["status"]==1){

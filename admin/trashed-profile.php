@@ -100,7 +100,9 @@ require_once("../inc/breadcrumbs.php")
                                                 <td>
                                                 <img src="../images/dashboard/admins/<?php echo $row["image"];?>" class=" rounded-circle mr-3 max-image-60px" alt="">
                                                 </td>
-                                                <td><?php echo $row["role"];?></td>
+                                                <td>
+                                                <?php if($row["role"]==1){echo "Admin";}else{echo "Editor";}?>
+                                                </td>
                                                 <td><?php 
                                                 if($row["status"]==1){
                                                     echo '<a href="?action=deactive&id='.$row["id"].'" class="btn btn-sm btn-success bg-gradient">Active</a>';
