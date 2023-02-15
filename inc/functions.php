@@ -54,19 +54,14 @@ function getCount($conn, $table="",$col="", $id=""){
     }
     
 }
-function getAuthorName($conn, $role, $id){
-if($role==1 || $role==2){
-    $sql = " SELECT * FROM  `admins` WHERE `id`='$id' ";
-}elseif($role==3){
-    $sql = " SELECT * FROM  `users` WHERE  `id`='$id' ";
-}
-
+function getName($conn, $table="", $id=""){
+    $sql = " SELECT * FROM  `$table` WHERE `id`='$id' ";
     $res = mysqli_query($conn,$sql);
     if(mysqli_num_rows($res)>0){
         $row = mysqli_fetch_assoc($res);
-        echo $row["name"];
+        return $row;
     }else{
-        echo "Anonymous";
+        return "Anonymous";
     }
     
 }

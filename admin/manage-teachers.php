@@ -25,12 +25,12 @@ $zoom_username = "";
 $zoom_id = "";
 $zoom_password = "";
 $added_by = "";
-
+$required = "required";
 
 $btnName = "Add Record";
 if (isset($_GET["id"]) && $_GET["id"] != "" && $_GET["id"] > 0) {
     $btnName = "Update Record";
-
+    $required = "";
     $id = $_GET["id"];
     $res = mysqli_query($conn, "SELECT * FROM `$table` WHERE `id`='$id'");
     $row = mysqli_fetch_array($res);
@@ -75,7 +75,7 @@ if (isset($_POST["submit"])) {
         $image = $_FILES["image"]["name"];
         $image = rand(111111111,999999999)."_".$image;
         $image_tmp = $_FILES["image"]["tmp_name"];
-        move_uploaded_file($image_tmp,'../images/dashboard/admins/'.$image);
+        move_uploaded_file($image_tmp,'../images/dashboard/teachers/'.$image);
         
     }
 
@@ -105,7 +105,7 @@ if (isset($_POST["submit"])) {
             $_SESSION["msg"] = '<div class="alert alert-success alert-dismissible fade show msg">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
         </button> <strong>Success!</strong> Updated Successfully.</div>';
-            header("location:profile");
+            header("location:teachers");
         } else {
             $msg = '<div class="alert alert-danger alert-dismissible fade show msg">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
@@ -117,7 +117,7 @@ if (isset($_POST["submit"])) {
             $_SESSION["msg"] = '<div class="alert alert-success alert-dismissible fade show msg">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
             </button> <strong>Success!</strong> Added Successfully.</div>';
-            header("location:profile");
+            header("location:teachers");
         } else {
             $msg = '<div class="alert alert-danger alert-dismissible fade show msg">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
@@ -190,7 +190,7 @@ echo $msg;
                                                     </label>
                                                     <div class="">
                                                         <input type="text" class="form-control" id="name" name="name"
-                                                            placeholder="E.g. John Doe" value="<?php echo $name; ?>">
+                                                            placeholder="E.g. John Doe" value="<?php echo $name; ?>" <?php echo $required;?>>
                                                     </div>
                                                 </div>
                                             </div>
@@ -203,7 +203,7 @@ echo $msg;
                                                     <div class="">
                                                         <input type="text" class="form-control" id="email" name="email"
                                                             placeholder="E.g. example@mail.com"
-                                                            value="<?php echo $email; ?>">
+                                                            value="<?php echo $email; ?>" <?php echo $required;?>>
                                                     </div>
                                                 </div>
                                             </div>
@@ -215,7 +215,7 @@ echo $msg;
                                                     </label>
                                                     <div class="">
                                                         <input type="password" class="form-control" id="password"
-                                                            name="password" placeholder="E.g. Password@123" value="">
+                                                            name="password" placeholder="E.g. Password@123" value="" <?php echo $required;?>>
                                                         <input type="hidden" name="password_old"
                                                             value="<?php echo $password; ?>">
                                                     </div>
@@ -223,8 +223,7 @@ echo $msg;
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group ">
-                                                    <label class="col-form-label" for="image">Image <span
-                                                            class="text-danger">*</span>
+                                                    <label class="col-form-label" for="image">Image <span class="small">(Optional)</span>
                                                     </label>
                                                     <div class="">
                                                         <input type="file" class="form-control" id="image" name="image"
@@ -240,7 +239,7 @@ echo $msg;
                                                     </label>
                                                     <div class="">
                                                         <input type="text" class="form-control" id="father_name" name="father_name"
-                                                            placeholder="E.g. John Doe" value="<?php echo $father_name; ?>">
+                                                            placeholder="E.g. John Doe" value="<?php echo $father_name; ?>" <?php echo $required;?>>
                                                     </div>
                                                 </div>
                                             </div>
@@ -250,7 +249,7 @@ echo $msg;
                                                     </label>
                                                     <div class="">
                                                         <input type="text" class="form-control" id="cnic" name="cnic"
-                                                            placeholder="E.g. 00000-0000000-0" value="<?php echo $cnic; ?>">
+                                                            placeholder="E.g. 00000-0000000-0" value="<?php echo $cnic; ?>" <?php echo $required;?>>
                                                     </div>
                                                 </div>
                                             </div>
@@ -260,7 +259,7 @@ echo $msg;
                                                     </label>
                                                     <div class="">
                                                         <input type="text" class="form-control" id="nationality" name="nationality"
-                                                            placeholder="E.g. Pakistani" value="<?php echo $nationality; ?>">
+                                                            placeholder="E.g. Pakistani" value="<?php echo $nationality; ?>" <?php echo $required;?>>
                                                     </div>
                                                 </div>
                                             </div>
@@ -270,13 +269,13 @@ echo $msg;
                                                     </label>
                                                     <div class="">
                                                         <input type="text" class="form-control" id="phone1" name="phone1"
-                                                            placeholder="E.g. 00000000000" value="<?php echo $phone1; ?>">
+                                                            placeholder="E.g. 00000000000" value="<?php echo $phone1; ?>" <?php echo $required;?>>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group ">
-                                                    <label class="col-form-label" for="phone2">Phone 2<span class="text-danger">*</span>
+                                                    <label class="col-form-label" for="phone2">Phone 2 <span class="small">(Optional)</span>
                                                     </label>
                                                     <div class="">
                                                         <input type="text" class="form-control" id="phone2" name="phone2"
@@ -330,7 +329,7 @@ echo $msg;
                                                     </label>
                                                     <div class="">
                                                         <input type="text" class="form-control" id="qualification" name="qualification"
-                                                            placeholder="E.g. BSCS" value="<?php echo $qualification; ?>">
+                                                            placeholder="E.g. BSCS" value="<?php echo $qualification; ?>" <?php echo $required;?>>
                                                     </div>
                                                 </div>
                                             </div>
@@ -340,7 +339,7 @@ echo $msg;
                                                     </label>
                                                     <div class="">
                                                         <textarea class="form-control" id="experience" name="experience"
-                                                            placeholder="E.g. 4 Years"><?php echo $experience; ?></textarea>
+                                                            placeholder="E.g. 4 Years" <?php echo $required;?>><?php echo $experience; ?></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -350,7 +349,7 @@ echo $msg;
                                                     </label>
                                                     <div class="">
                                                         <textarea class="form-control" id="address" name="address"
-                                                            placeholder="E.g. Type Address"><?php echo $address; ?></textarea>
+                                                            placeholder="E.g. Type Address" <?php echo $required;?>><?php echo $address; ?></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -359,7 +358,7 @@ echo $msg;
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group ">
-                                                    <label class="col-form-label" for="bank_account_title">Account Title<span class="text-danger">*</span>
+                                                    <label class="col-form-label" for="bank_account_title">Account Title <span class="small">(Optional)</span>
                                                     </label>
                                                     <div class="">
                                                         <input type="text" class="form-control" id="bank_account_title" name="bank_account_title"
@@ -369,7 +368,7 @@ echo $msg;
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group ">
-                                                    <label class="col-form-label" for="bank_name">Bank Name<span class="text-danger">*</span>
+                                                    <label class="col-form-label" for="bank_name">Bank Name <span class="small">(Optional)</span>
                                                     </label>
                                                     <div class="">
                                                         <input type="text" class="form-control" id="bank_name" name="bank_name"
@@ -379,7 +378,7 @@ echo $msg;
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group ">
-                                                    <label class="col-form-label" for="bank_branch_code">Branch Code<span class="text-danger">*</span>
+                                                    <label class="col-form-label" for="bank_branch_code">Branch Code <span class="small">(Optional)</span>
                                                     </label>
                                                     <div class="">
                                                         <input type="text" class="form-control" id="bank_branch_code" name="bank_branch_code"
@@ -389,7 +388,7 @@ echo $msg;
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group ">
-                                                    <label class="col-form-label" for="bank_account_number">Account Number<span class="text-danger">*</span>
+                                                    <label class="col-form-label" for="bank_account_number">Account Number <span class="small">(Optional)</span>
                                                     </label>
                                                     <div class="">
                                                         <input type="text" class="form-control" id="bank_account_number" name="bank_account_number"
@@ -402,7 +401,7 @@ echo $msg;
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group ">
-                                                    <label class="col-form-label" for="zoom_username">User Name<span class="text-danger">*</span>
+                                                    <label class="col-form-label" for="zoom_username">User Name <span class="small">(Optional)</span>
                                                     </label>
                                                     <div class="">
                                                         <input type="text" class="form-control" id="zoom_username" name="zoom_username"
@@ -412,7 +411,7 @@ echo $msg;
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group ">
-                                                    <label class="col-form-label" for="zoom_id">Zoom ID<span class="text-danger">*</span>
+                                                    <label class="col-form-label" for="zoom_id">Zoom ID <span class="small">(Optional)</span>
                                                     </label>
                                                     <div class="">
                                                         <input type="text" class="form-control" id="zoom_id" name="zoom_id"
@@ -422,7 +421,7 @@ echo $msg;
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group ">
-                                                    <label class="col-form-label" for="zoom_password">Zoom Password<span class="text-danger">*</span>
+                                                    <label class="col-form-label" for="zoom_password">Zoom Password <span class="small">(Optional)</span>
                                                     </label>
                                                     <div class="">
                                                         <input type="text" class="form-control" id="zoom_password" name="zoom_password"

@@ -55,7 +55,7 @@ Header start
                     <div class="dropdown-content-body">
                         <ul>
                             <li>
-                                <a href="manage-profile?id=<?php echo md5($_SESSION["ADMIN_LOGIN"]["ID"])?>"><i class="icon-user"></i> <span>Profile</span></a>
+                                <a href="manage-profile?id=<?php echo md5($_SESSION["ADMIN_LOGIN"]["ID"])?>&pid=<?php echo $_SESSION["ADMIN_LOGIN"]["ID"]?>"><i class="icon-user"></i> <span>Profile</span></a>
                             </li>
 
 

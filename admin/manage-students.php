@@ -7,21 +7,20 @@ $name = "";
 $email = "";
 $password = "";
 $image = "";
-$role = "";
-
+$father_name = "";
+$nationality = "";
+$phone = "";
+$gender = "";
+$qualification = "";
+$address = "";
+$added_by = "";
+$required = "required";
 
 $btnName = "Add Record";
 if (isset($_GET["id"]) && $_GET["id"] != "" && $_GET["id"] > 0) {
     $btnName = "Update Record";
-
+    $required = "";
     $id = $_GET["id"];
-    $pid = $_GET["pid"];
-    if($id == md5($pid)){
-        $id = $pid;
-    }else{
-        header("location:dashboard");
-        die();
-    }
     $res = mysqli_query($conn, "SELECT * FROM `$table` WHERE `id`='$id'");
     $row = mysqli_fetch_array($res);
 
@@ -29,14 +28,18 @@ if (isset($_GET["id"]) && $_GET["id"] != "" && $_GET["id"] > 0) {
     $email = $row["email"];
     $password = $row["password"];
     $image = $row["image"];
-    $role = $row["role"];
+    $father_name = $row["father_name"];
+    $nationality = $row["nationality"];
+    $phone = $row["phone"];
+    $gender = $row["gender"];
+    $qualification = $row["qualification"];
+    $address = $row["address"];
+    $added_by = $_SESSION["ADMIN_LOGIN"]["ID"];
 }
 if (isset($_POST["submit"])) {
     $name = getSaveValue($conn, $_POST["name"]);
     $email = getSaveValue($conn, $_POST["email"]);
-    
-    $role = getSaveValue($conn, $_POST["role"]);
-   
+
     if(empty($_POST["password"])){
         $password = getSaveValue($conn,$_POST["password_old"]);
     }else{
@@ -44,42 +47,44 @@ if (isset($_POST["submit"])) {
         $password = md5($password);
         
     }
-    
-    
     if(empty($_FILES["image"]["name"])){
         $image = getSaveValue($conn,$_POST["image_old"]);
     }else{
         $image = $_FILES["image"]["name"];
         $image = rand(111111111,999999999)."_".$image;
         $image_tmp = $_FILES["image"]["tmp_name"];
-        move_uploaded_file($image_tmp,'../images/dashboard/admins/'.$image);
+        move_uploaded_file($image_tmp,'../images/dashboard/students/'.$image);
         
     }
-    if (isset($_GET["id"]) && $_GET["id"] != "" && $_GET["id"] > 0) {
-        $res = mysqli_query($conn, "UPDATE `$table` SET `name`='$name',`email`='$email',`password`='$password',`image`='$image',`role`='$role' WHERE `id`='$id'");
-        if ($res) {
 
-            $_SESSION["ADMIN_LOGIN"]["NAME"] = $name;
-            $_SESSION["ADMIN_LOGIN"]["EMAIL"] = $email;
-            $_SESSION["ADMIN_LOGIN"]["PASSWORD"] = $password;
-            $_SESSION["ADMIN_LOGIN"]["IMAGE"] = $image;
+    $father_name = getSaveValue($conn, $_POST["father_name"]);
+    $nationality = getSaveValue($conn, $_POST["nationality"]);
+    $phone = getSaveValue($conn, $_POST["phone"]);
+    $gender = getSaveValue($conn, $_POST["gender"]);
+    $qualification = getSaveValue($conn, $_POST["qualification"]);
+    $address = getSaveValue($conn, $_POST["address"]);
+    $added_by = $_SESSION["ADMIN_LOGIN"]["ID"];
+
+    if (isset($_GET["id"]) && $_GET["id"] != "" && $_GET["id"] > 0) {
+        $res = mysqli_query($conn, "UPDATE `$table` SET `name`='$name',`email`='$email',`password`='$password',`image`='$image',`father_name`='$father_name',`nationality`='$nationality',`phone`='$phone',`gender`='$gender',`qualification`='$qualification',`address`='$address',`added_by`='$added_by' WHERE `id`='$id'");
+        if ($res) {
 
             $_SESSION["msg"] = '<div class="alert alert-success alert-dismissible fade show msg">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
         </button> <strong>Success!</strong> Updated Successfully.</div>';
-            header("location:profile");
+            header("location:students");
         } else {
             $msg = '<div class="alert alert-danger alert-dismissible fade show msg">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
         </button> <strong>Warning!</strong> Error in Updating.</div>';
         }
     } else {
-        $res = mysqli_query($conn, "INSERT INTO `$table` (`name`, `email`, `password`, `image`,`role`) VALUES ('$name','$email', '$password', '$image','$role')");
+        $res = mysqli_query($conn, "INSERT INTO `$table` (`name`, `email`, `password`, `image`, `father_name`,  `nationality`, `phone`, `gender`, `qualification`, `address`, `added_by`) VALUES ('$name','$email', '$password', '$image','$father_name','$nationality','$phone','$gender','$qualification','$address','$added_by')");
         if ($res) {
             $_SESSION["msg"] = '<div class="alert alert-success alert-dismissible fade show msg">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
             </button> <strong>Success!</strong> Added Successfully.</div>';
-            header("location:profile");
+            header("location:students");
         } else {
             $msg = '<div class="alert alert-danger alert-dismissible fade show msg">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
@@ -145,50 +150,47 @@ echo $msg;
                                     <form class="form-valide" action="" method="post" enctype="multipart/form-data">
                                         <div class="row">
 
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <div class="form-group ">
                                                     <label class="col-form-label" for="name">Name <span
                                                             class="text-danger">*</span>
                                                     </label>
                                                     <div class="">
                                                         <input type="text" class="form-control" id="name" name="name"
-                                                            placeholder="E.g. Admin" value="<?php echo $name; ?>">
+                                                            placeholder="E.g. John Doe" value="<?php echo $name; ?>" <?php echo $required;?>>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <?php
-                                    if($_SESSION["ADMIN_LOGIN"]["ROLE"]==1){
-                                    ?>
-                                            <div class="col-md-6">
+                                    
+                                            <div class="col-md-4">
                                                 <div class="form-group ">
                                                     <label class="col-form-label" for="email">Email <span
                                                             class="text-danger">*</span>
                                                     </label>
                                                     <div class="">
                                                         <input type="text" class="form-control" id="email" name="email"
-                                                            placeholder="E.g. Admin@mail.com"
-                                                            value="<?php echo $email; ?>">
+                                                            placeholder="E.g. example@mail.com"
+                                                            value="<?php echo $email; ?>" <?php echo $required;?>>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <?php }?>
-                                            <div class="col-md-6">
+                                          
+                                            <div class="col-md-4">
                                                 <div class="form-group ">
                                                     <label class="col-form-label" for="password">Password <span
                                                             class="text-danger">*</span>
                                                     </label>
                                                     <div class="">
                                                         <input type="password" class="form-control" id="password"
-                                                            name="password" placeholder="E.g. Admin@123" value="">
+                                                            name="password" placeholder="E.g. Password@123" value="" <?php echo $required;?>>
                                                         <input type="hidden" name="password_old"
                                                             value="<?php echo $password; ?>">
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <div class="form-group ">
-                                                    <label class="col-form-label" for="image">Featured Image <span
-                                                            class="text-danger">*</span>
+                                                    <label class="col-form-label" for="image">Image <span class="small">(Optional)</span>
                                                     </label>
                                                     <div class="">
                                                         <input type="file" class="form-control" id="image" name="image"
@@ -198,34 +200,76 @@ echo $msg;
                                                     </div>
                                                 </div>
                                             </div>
-                                            <?php
-if($_SESSION["ADMIN_LOGIN"]["ROLE"]==1){
-?>
-                                            <div class="col-md-6">
+                                            <div class="col-md-4">
                                                 <div class="form-group ">
-                                                    <label class="col-form-label" for="role">Role <span
-                                                            class="text-danger">*</span>
+                                                    <label class="col-form-label" for="father_name">Father Name <span class="text-danger">*</span>
                                                     </label>
                                                     <div class="">
-                                                        <select class="form-control" id="role" name="role">
-
-                                                            <option value="" hidden selected>Select Role</option>
+                                                        <input type="text" class="form-control" id="father_name" name="father_name"
+                                                            placeholder="E.g. John Doe" value="<?php echo $father_name; ?>" <?php echo $required;?>>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           
+                                            <div class="col-md-4">
+                                                <div class="form-group ">
+                                                    <label class="col-form-label" for="nationality">Nationality <span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="nationality" name="nationality"
+                                                            placeholder="E.g. Pakistani" value="<?php echo $nationality; ?>" <?php echo $required;?>>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group ">
+                                                    <label class="col-form-label" for="phone">Phone  <span class="small">(Optional)</span>
+                                                    </label>
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="phone" name="phone"
+                                                            placeholder="E.g. 00000000000" value="<?php echo $phone; ?>">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           
+                                            <div class="col-md-4">
+                                                <div class="form-group ">
+                                                    <label class="col-form-label" for="gender">Gender 
+                                                    </label>
+                                                    <div class="">
+                                                        <select class="form-control" id="gender" name="gender">
                                                             <option value="1"
-                                                                <?php if($role==1){echo "selected";}else{echo "";}?>>
-                                                                Admin</option>
+                                                                <?php if($gender==1){echo "selected";}else{echo "";}?>>
+                                                                Male</option>
                                                             <option value="2"
-                                                                <?php if($role==2){echo "selected";}else{echo "";}?>>
-                                                                Editor</option>
-
+                                                                <?php if($gender==2){echo "selected";}else{echo "";}?>>
+                                                                Female</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <?php }?>
-
+                                           
+                                            <div class="col-md-4">
+                                                <div class="form-group ">
+                                                    <label class="col-form-label" for="qualification">Qualification <span class="small">(Optional)</span>
+                                                    </label>
+                                                    <div class="">
+                                                        <input type="text" class="form-control" id="qualification" name="qualification"
+                                                            placeholder="E.g. BSCS" value="<?php echo $qualification; ?>" >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           
+                                            <div class="col-md-12">
+                                                <div class="form-group ">
+                                                    <label class="col-form-label" for="address">Address<span class="text-danger">*</span>
+                                                    </label>
+                                                    <div class="">
+                                                        <textarea class="form-control" id="address" name="address" placeholder="E.g. Type Address"><?php echo $address; ?></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-
-
                                         <div class="form-group">
                                             <div class="col-12">
                                                 <button type="submit" class="btn btn-primary"

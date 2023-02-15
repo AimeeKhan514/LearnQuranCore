@@ -20,6 +20,9 @@ if($pageName == "manage-profile" || $pageName == "profile" || $pageName == "tras
 if($pageName == "manage-teachers" || $pageName == "teachers" || $pageName == "trashed-teachers"){
     $table = "teachers";
 }
+if($pageName == "manage-students" || $pageName == "students" || $pageName == "trashed-students"){
+    $table = "students";
+}
 
 
 ?>

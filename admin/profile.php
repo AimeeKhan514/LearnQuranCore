@@ -112,7 +112,7 @@ require_once("../inc/breadcrumbs.php")
                                                 ?></td>
                                                 <td><?php echo date("D-d-M-y",strtotime($row["added_on"]));?></td>
                                                 <td>
-                                                <a href="manage-profile?id=<?php echo $row["id"]?>" class="btn btn-sm btn-primary bg-gradient">Edit</a>
+                                                <a href="manage-profile?id=<?php echo md5($row["id"])?>&pid=<?php echo $row["id"];?>" class="btn btn-sm btn-primary bg-gradient">Edit</a>
                                                 <a href="?action=trashed&id=<?php echo $row["id"]?>" class="btn btn-sm btn-danger bg-gradient">Move To Trash</a>
 
                                                 </td>

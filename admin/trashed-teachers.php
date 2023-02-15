@@ -106,9 +106,9 @@ require_once("../inc/breadcrumbs.php")
 
                                             if(mysqli_num_rows($res)>0){
                                                 while($row = mysqli_fetch_array($res)){
+                                                    $getName =  getName($conn,'admins',$row["added_by"]);
                                             ?>
                                             <tr>
-                                             
                                                 <td><?php echo $sr;?></td>
                                                 <td><?php echo $row["id"];?></td>
                                                 <td><?php echo $row["name"];?></td>
@@ -128,8 +128,12 @@ require_once("../inc/breadcrumbs.php")
                                                 </td>
                                                 <td><?php echo $row["marital_status"];?></td>
                                                 <td><?php echo $row["qualification"];?></td>
-                                                <td><?php echo $row["experience"];?></td>
-                                                <td><?php echo $row["address"];?></td>
+                                                <td>
+                                                <p class="text-truncate" style="max-width:100px ;"  data-toggle="tooltip" data-placement="top" title="<?php echo strip_tags(html_entity_decode($row["experience"]));?>"><?php echo strip_tags(html_entity_decode($row["experience"]));?></p>
+                                            </td>
+                                                <td>
+                                                <p class="text-truncate" style="max-width:100px ;"  data-toggle="tooltip" data-placement="left" title="<?php echo strip_tags(html_entity_decode($row["address"]));?>"><?php echo strip_tags(html_entity_decode($row["address"]));?></p>
+                                            </td>
                                                 <td><?php echo $row["bank_account_title"];?></td>
                                                 <td><?php echo $row["bank_name"];?></td>
                                                 <td><?php echo $row["bank_branch_code"];?></td>
@@ -137,8 +141,9 @@ require_once("../inc/breadcrumbs.php")
                                                 <td><?php echo $row["zoom_username"];?></td>
                                                 <td><?php echo $row["zoom_id"];?></td>
                                                 <td><?php echo $row["zoom_password"];?></td>
-                                                <td>
-                                                <?php if($row["added_by"]==1){echo "Admin";}else{echo "Editor";}?>
+                                                <td data-toggle="tooltip" data-placement="top" title="<?php if($getName["role"]==1){echo "Admin";}else{echo "Editor";}?>">
+                                                <?php echo $getName["name"];
+                                                ?>
                                                 </td>
                                                 <td><?php 
                                                 if($row["status"]==1){
