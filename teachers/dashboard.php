@@ -28,7 +28,7 @@ if(isset($_SESSION["msg"])){
     ***********************************-->
     <div id="main-wrapper">
         <?php
-require_once("../inc/admin-header.php")
+require_once("../inc/admin-headerT.php")
 ?>
 
  
@@ -36,7 +36,7 @@ require_once("../inc/admin-header.php")
             Sidebar start
         ***********************************-->
         <?php
-require_once("../inc/admin-sidebar.php")
+// require_once("../inc/admin-sidebarT.php")
 ?>
         <!--**********************************
             Sidebar end
@@ -172,28 +172,7 @@ require_once("../inc/admin-sidebar.php")
                             </div>
                         </div>
                     </a>
-                    <?php
-if($_SESSION["AUTH_LOGIN"]["ROLE"]==1){
-?>
-                    <a href="manage-profile" class="col-lg-3">
-                        <div class="card card-widget">
-                            <div class="card-body gradient-4">
-                                <div class="media">
-                                    <span class="card-widget__icon"><i class="icon-user"></i></span>
-                                    <div class="media-body">
-                                        <h2 class="card-widget__title">
-                                        <?php echo getTotalRecords($conn, 'admins','1');?>A
-                                            <?php echo getTotalRecords($conn, 'admins','0');?>D
-                                        </h2>
-                                        <h5 class="card-widget__subtitle">Add Manager</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <?php 
-                    }
-                    ?>
+
 
                 </div>
             </div>
@@ -223,5 +202,5 @@ require_once("../inc/admin-footer.php")
         Scripts
     ***********************************-->
     <?php
-require_once("../inc/admin-bottom.php")
+require_once("../inc/admin-bottomT.php")
 ?>

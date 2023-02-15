@@ -34,7 +34,7 @@ if (isset($_GET["id"]) && $_GET["id"] != "" && $_GET["id"] > 0) {
     $gender = $row["gender"];
     $qualification = $row["qualification"];
     $address = $row["address"];
-    $added_by = $_SESSION["ADMIN_LOGIN"]["ID"];
+    $added_by = $_SESSION["AUTH_LOGIN"]["ID"];
 }
 if (isset($_POST["submit"])) {
     $name = getSaveValue($conn, $_POST["name"]);
@@ -63,7 +63,7 @@ if (isset($_POST["submit"])) {
     $gender = getSaveValue($conn, $_POST["gender"]);
     $qualification = getSaveValue($conn, $_POST["qualification"]);
     $address = getSaveValue($conn, $_POST["address"]);
-    $added_by = $_SESSION["ADMIN_LOGIN"]["ID"];
+    $added_by = $_SESSION["AUTH_LOGIN"]["ID"];
 
     if (isset($_GET["id"]) && $_GET["id"] != "" && $_GET["id"] > 0) {
         $res = mysqli_query($conn, "UPDATE `$table` SET `name`='$name',`email`='$email',`password`='$password',`image`='$image',`father_name`='$father_name',`nationality`='$nationality',`phone`='$phone',`gender`='$gender',`qualification`='$qualification',`address`='$address',`added_by`='$added_by' WHERE `id`='$id'");

@@ -9,7 +9,7 @@ if(isset($_POST["btn_login"])){
     $email = getSaveValue($conn,$_POST["email"]);
     $password = getSaveValue($conn,$_POST["password"]);
     $password = md5($password);
-    $res = mysqli_query($conn,"SELECT * FROM `admins` WHERE `email`='$email' AND BINARY `password`='$password' AND `status`='1'");
+    $res = mysqli_query($conn,"SELECT * FROM `teachers` WHERE `email`='$email' AND BINARY `password`='$password' AND `status`='1'");
     
     if(mysqli_num_rows($res)>0){
         $row = mysqli_fetch_assoc($res);
@@ -19,7 +19,7 @@ if(isset($_POST["btn_login"])){
         $_SESSION["AUTH_LOGIN"]["PASSWORD"] = $row["password"];
         $_SESSION["AUTH_LOGIN"]["IMAGE"] = $row["image"];
         $_SESSION["AUTH_LOGIN"]["ID"] = $row["id"];
-        $_SESSION["AUTH_LOGIN"]["ROLE"] = $row["role"];
+        $_SESSION["AUTH_LOGIN"]["ADDED_BY"] = $row["added_by"];
         header("location:dashboard");
     }else{
         $msg = '<div class="alert alert-danger alert-dismissible fade show ">
@@ -95,8 +95,8 @@ if(isset($_SESSION["msg"])){
                                             <label class="col-form-label" for="password">Password <span class="text-danger">*</span>
                                             </label>
                                                 <input type="password" class="form-control" placeholder="E.g. Password@123" name="password" id="password" required
-                                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
-                                title="The Minimum Password Length is 8 and Must contain at least 1 number, 1 uppercase, 1 lowercase, 1 Special character">
+                                                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
+                                                title="The Minimum Password Length is 8 and Must contain at least 1 number, 1 uppercase, 1 lowercase, 1 Special character">
                                             </div>
                                             <button class="btn login-form__btn submit w-100" name="btn_login">Login</button>
                                         </form>

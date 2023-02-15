@@ -1,6 +1,8 @@
 <?php
 require_once("../inc/admin-top.php");
 require_once("../inc/getData.php");
+if($_SESSION["AUTH_LOGIN"]["ROLE"]==1){
+
 
 if(isset($_SESSION["msg"])){
     echo $_SESSION["msg"];
@@ -60,12 +62,8 @@ require_once("../inc/breadcrumbs.php")
                         <div class="card">
                             <div class="card-body">
                                <div class="text-right">
-                               <a href="manage-posts" class="btn btn-sm btn-primary">Add New</a>
-                               <?php
-if($_SESSION["ADMIN_LOGIN"]["ROLE"]==1){
-?>
-                               <a href="trashed-posts" class="btn btn-sm btn-outline-primary">Trash</a>
-                               <?php }?>
+                               <a href="manage-profile" class="btn btn-sm btn-primary">Add New</a>
+                               <a href="trashed-profile" class="btn btn-sm btn-outline-primary">Trash</a>
                                </div>
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered zero-configuration text-capitalize">
@@ -73,14 +71,11 @@ if($_SESSION["ADMIN_LOGIN"]["ROLE"]==1){
                                             <tr>
                                                 <th>#sr</th>
                                                 <th>Id</th>
-                                                <th>Categories</th>
-                                                <th>‌Sub Categories</th>
-                                                <th>Title</th>
-                                                <th>Featured Image</th>
-                                                <th>Image 1</th>
-                                                <th>Image 2</th>
-                                                <th>Description</th>
-                                                <th>Added By</th>
+                                                <th>Name</th>
+                                                <th>email</th>
+                                                <th>password</th>
+                                                <th>image</th>
+                                                <th>Role</th>
                                                 <th>Status</th>
                                                 <th>Added On</th>
                                                 <th>Actions</th>
@@ -97,44 +92,15 @@ if($_SESSION["ADMIN_LOGIN"]["ROLE"]==1){
                                             <tr>
                                                 <td><?php echo $sr;?></td>
                                                 <td><?php echo $row["id"];?></td>
-                                                <td>
-                                                    <?php 
-                                                    $resCat = mysqli_query($conn,"SELECT * FROM `categories` WHERE `status`='1' AND `id`='".$row["category_id"]."'");
-                                                    if($row["category_id"]==0){
-                                                        echo "----";
-                                                    }else{
-                                                    $rowCat = mysqli_fetch_array($resCat);
-                                                    echo $rowCat["title"];
-                                                    }
-                                                    ;?>
-                                            </td>
-                                            <td>
-                                                    <?php 
-                                                    $resSubCat = mysqli_query($conn,"SELECT * FROM `subcategories` WHERE `status`='1' AND `id`='".$row["subcategory_id"]."'");
-                                                    if($row["subcategory_id"]==0){
-                                                        echo "----";
-                                                    }else{
-                                                    $rowSubCat = mysqli_fetch_array($resSubCat);
-                                                    echo $rowSubCat["title"];
-                                                    }
-                                                    ;?>
-                                            </td>
-                                                <td><?php echo $row["title"];?></td>
-                                                <td>
-                                                <img src="../images/posts/<?php echo $row["featured_image"];?>" class="rounded-circle mr-3 max-image-60px" alt="">
-                                                </td>
-                                                <td>
-                                                <img src="../images/posts/<?php echo $row["image1"];?>" class=" rounded-circle mr-3 max-image-60px" alt="">
-                                                </td>
-                                                <td>
-                                                <img src="../images/posts/<?php echo $row["image2"];?>" class=" rounded-circle mr-3 max-image-60px" alt="">
-                                                </td>
+                                                <td><?php echo $row["name"];?></td>
+                                                <td><?php echo $row["email"];?></td>
+                                                <td><?php echo $row["password"];?></td>
                                                 
                                                 <td>
-                                                <p class="text-truncate" style="max-width:100px ;"  data-toggle="tooltip" data-placement="left" title="<?php echo strip_tags(html_entity_decode($row["description"]));?>"><?php echo strip_tags(html_entity_decode($row["description"]));?></p>
-                                            </td>
+                                                <img src="../images/dashboard/admins/<?php if($row["image"]=="" || $row["image"]==null){echo "manager.png";}else{echo $row["image"];}?>" class=" rounded-circle mr-3 max-image-60px" alt="">
+                                                </td>
                                                 <td>
-                                                <?php if($row["role"]==1){echo "Admin";}elseif($row["role"]==2){echo "Editor";}elseif($row["role"]==3){echo "User";}?>
+                                                <?php if($row["role"]==1){echo "Admin";}else{echo "Editor";}?>
                                                 </td>
                                                 <td><?php 
                                                 if($row["status"]==1){
@@ -146,12 +112,9 @@ if($_SESSION["ADMIN_LOGIN"]["ROLE"]==1){
                                                 ?></td>
                                                 <td><?php echo date("D-d-M-y",strtotime($row["added_on"]));?></td>
                                                 <td>
-                                                <a href="manage-posts?id=<?php echo $row["id"]?>" class="btn btn-sm btn-primary bg-gradient">Edit</a>
-                                                <?php
-if($_SESSION["ADMIN_LOGIN"]["ROLE"]==1){
-?>
+                                                <a href="manage-profile?id=<?php echo md5($row["id"])?>&pid=<?php echo $row["id"];?>" class="btn btn-sm btn-primary bg-gradient">Edit</a>
                                                 <a href="?action=trashed&id=<?php echo $row["id"]?>" class="btn btn-sm btn-danger bg-gradient">Move To Trash</a>
-<?php }?>
+
                                                 </td>
                                             </tr>
                                             <?php
@@ -195,10 +158,8 @@ require_once("../inc/admin-footer.php")
         Scripts
     ***********************************-->
     <?php
-require_once("../inc/admin-bottom.php")
+require_once("../inc/admin-bottom.php");
+}else{
+    header("location:dashboard");
+}
 ?>
-<script>
-    $(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
-</script>

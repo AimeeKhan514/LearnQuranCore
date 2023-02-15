@@ -62,7 +62,7 @@ require_once("../inc/breadcrumbs.php")
                                <div class="text-right">
                                <a href="manage-sub-categories" class="btn btn-sm btn-primary">Add New</a>
                                <?php
-if($_SESSION["ADMIN_LOGIN"]["ROLE"]==1){
+if($_SESSION["AUTH_LOGIN"]["ROLE"]==1){
 ?>
                                <a href="trashed-sub-categories" class="btn btn-sm btn-outline-primary">Trash</a>
                                <?php }?>
@@ -128,7 +128,7 @@ if($_SESSION["ADMIN_LOGIN"]["ROLE"]==1){
                                                 <td>
                                                 <a href="manage-sub-categories?id=<?php echo $row["id"]?>" class="btn btn-sm btn-primary bg-gradient">Edit</a>
                                                 <?php
-if($_SESSION["ADMIN_LOGIN"]["ROLE"]==1){
+if($_SESSION["AUTH_LOGIN"]["ROLE"]==1){
 ?>
                                                 <a href="?action=trashed&id=<?php echo $row["id"]?>" class="btn btn-sm btn-danger bg-gradient">Move To Trash</a>
                                                 <?php }?>

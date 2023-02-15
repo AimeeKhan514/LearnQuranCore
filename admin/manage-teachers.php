@@ -56,7 +56,7 @@ if (isset($_GET["id"]) && $_GET["id"] != "" && $_GET["id"] > 0) {
     $zoom_username = $row["zoom_username"];
     $zoom_id = $row["zoom_id"];
     $zoom_password = $row["zoom_password"];
-    $added_by = $_SESSION["ADMIN_LOGIN"]["ID"];
+    $added_by = $_SESSION["AUTH_LOGIN"]["ID"];
 }
 if (isset($_POST["submit"])) {
     $name = getSaveValue($conn, $_POST["name"]);
@@ -96,7 +96,7 @@ if (isset($_POST["submit"])) {
     $zoom_username = getSaveValue($conn, $_POST["zoom_username"]);
     $zoom_id = getSaveValue($conn, $_POST["zoom_id"]);
     $zoom_password = getSaveValue($conn, $_POST["zoom_password"]);
-    $added_by = $_SESSION["ADMIN_LOGIN"]["ID"];
+    $added_by = $_SESSION["AUTH_LOGIN"]["ID"];
 
     if (isset($_GET["id"]) && $_GET["id"] != "" && $_GET["id"] > 0) {
         $res = mysqli_query($conn, "UPDATE `$table` SET `name`='$name',`email`='$email',`password`='$password',`image`='$image',`father_name`='$father_name',`cnic`='$cnic',`nationality`='$nationality',`phone1`='$phone1',`phone2`='$phone2',`gender`='$gender',`marital_status`='$marital_status',`qualification`='$qualification',`experience`='$experience',`address`='$address',`bank_account_title`='$bank_account_title',`bank_name`='$bank_name',`bank_branch_code`='$bank_branch_code',`bank_account_number`='$bank_account_number',`zoom_username`='$zoom_username',`zoom_id`='$zoom_id',`zoom_password`='$zoom_password',`added_by`='$added_by' WHERE `id`='$id'");
