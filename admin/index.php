@@ -1,6 +1,6 @@
 <?php
 require_once("../inc/admin-top.php");
-if(isset($_SESSION["AUTH_LOGIN"])){
+if(isset($_SESSION["ADMIN_LOGIN"])){
     header("location:dashboard");
     die(); 
 }
@@ -13,13 +13,13 @@ if(isset($_POST["btn_login"])){
     
     if(mysqli_num_rows($res)>0){
         $row = mysqli_fetch_assoc($res);
-        $_SESSION["AUTH_LOGIN"][] = true;
-        $_SESSION["AUTH_LOGIN"]["NAME"] = $row["name"];
-        $_SESSION["AUTH_LOGIN"]["EMAIL"] = $row["email"];
-        $_SESSION["AUTH_LOGIN"]["PASSWORD"] = $row["password"];
-        $_SESSION["AUTH_LOGIN"]["IMAGE"] = $row["image"];
-        $_SESSION["AUTH_LOGIN"]["ID"] = $row["id"];
-        $_SESSION["AUTH_LOGIN"]["ROLE"] = $row["role"];
+        $_SESSION["ADMIN_LOGIN"][] = true;
+        $_SESSION["ADMIN_LOGIN"]["NAME"] = $row["name"];
+        $_SESSION["ADMIN_LOGIN"]["EMAIL"] = $row["email"];
+        $_SESSION["ADMIN_LOGIN"]["PASSWORD"] = $row["password"];
+        $_SESSION["ADMIN_LOGIN"]["IMAGE"] = $row["image"];
+        $_SESSION["ADMIN_LOGIN"]["ID"] = $row["id"];
+        $_SESSION["ADMIN_LOGIN"]["ROLE"] = $row["role"];
         header("location:dashboard");
     }else{
         $msg = '<div class="alert alert-danger alert-dismissible fade show ">

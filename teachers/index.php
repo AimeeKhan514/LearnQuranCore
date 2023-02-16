@@ -1,6 +1,6 @@
 <?php
 require_once("../inc/admin-top.php");
-if(isset($_SESSION["AUTH_LOGIN"])){
+if(isset($_SESSION["TEACHER_LOGIN"])){
     header("location:dashboard");
     die(); 
 }
@@ -13,13 +13,13 @@ if(isset($_POST["btn_login"])){
     
     if(mysqli_num_rows($res)>0){
         $row = mysqli_fetch_assoc($res);
-        $_SESSION["AUTH_LOGIN"][] = true;
-        $_SESSION["AUTH_LOGIN"]["NAME"] = $row["name"];
-        $_SESSION["AUTH_LOGIN"]["EMAIL"] = $row["email"];
-        $_SESSION["AUTH_LOGIN"]["PASSWORD"] = $row["password"];
-        $_SESSION["AUTH_LOGIN"]["IMAGE"] = $row["image"];
-        $_SESSION["AUTH_LOGIN"]["ID"] = $row["id"];
-        $_SESSION["AUTH_LOGIN"]["ADDED_BY"] = $row["added_by"];
+        $_SESSION["TEACHER_LOGIN"][] = true;
+        $_SESSION["TEACHER_LOGIN"]["NAME"] = $row["name"];
+        $_SESSION["TEACHER_LOGIN"]["EMAIL"] = $row["email"];
+        $_SESSION["TEACHER_LOGIN"]["PASSWORD"] = $row["password"];
+        $_SESSION["TEACHER_LOGIN"]["IMAGE"] = $row["image"];
+        $_SESSION["TEACHER_LOGIN"]["ID"] = $row["id"];
+        $_SESSION["TEACHER_LOGIN"]["ADDED_BY"] = $row["added_by"];
         header("location:dashboard");
     }else{
         $msg = '<div class="alert alert-danger alert-dismissible fade show ">

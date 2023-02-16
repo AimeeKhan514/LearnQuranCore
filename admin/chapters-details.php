@@ -62,7 +62,7 @@ require_once("../inc/breadcrumbs.php")
                                <div class="text-right">
                                <a href="manage-chapters-details" class="btn btn-sm btn-primary">Add New</a>
                                <?php
-                                if($_SESSION["AUTH_LOGIN"]["ROLE"]==1){
+                                if($_SESSION["ADMIN_LOGIN"]["ROLE"]==1){
                                 ?>
                                <a href="trashed-chapters-details" class="btn btn-sm btn-outline-primary">Trash</a>
                                <?php }?>
@@ -136,7 +136,7 @@ require_once("../inc/breadcrumbs.php")
                                                 <td>
                                                 <a href="manage-chapters-details?id=<?php echo $row["id"]?>" class="btn btn-sm btn-primary bg-gradient">Edit</a>
                                                 <?php
-                                                if($_SESSION["AUTH_LOGIN"]["ROLE"]==1){
+                                                if($_SESSION["ADMIN_LOGIN"]["ROLE"]==1){
                                                 ?>
                                                 <a href="?action=trashed&id=<?php echo $row["id"]?>" class="btn btn-sm btn-danger bg-gradient">Move To Trash</a>
                                                 <?php }?>

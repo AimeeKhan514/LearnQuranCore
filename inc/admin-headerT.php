@@ -2,7 +2,7 @@
 Nav header start
 ***********************************-->
 <?php
-require_once("../inc/logout.php");
+require_once("../inc/logoutT.php");
 ?>
 <style>
     .user-img img {
@@ -61,15 +61,15 @@ Header end ti-comment-alt
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
                         <div class="user-img c-pointer position-relative">
                             <span class="activity active"></span>
-                            <img src="../images/dashboard/teachers/<?php if ($_SESSION["AUTH_LOGIN"]["IMAGE"] == "" || $_SESSION["AUTH_LOGIN"]["IMAGE"] == null) {
+                            <img src="../images/dashboard/teachers/<?php if ($_SESSION["TEACHER_LOGIN"]["IMAGE"] == "" || $_SESSION["TEACHER_LOGIN"]["IMAGE"] == null) {
                                 echo "teacher.png";
                             } else {
-                                echo $_SESSION["AUTH_LOGIN"]["IMAGE"];
+                                echo $_SESSION["TEACHER_LOGIN"]["IMAGE"];
                             } ?>" height="40" width="40" alt="">
                         </div>
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="manage-profile?id=<?php echo md5($_SESSION["AUTH_LOGIN"]["ID"]) ?>&pid=<?php echo $_SESSION["AUTH_LOGIN"]["ID"] ?>">Profile</a>
+                        <a class="dropdown-item" href="manage-profile?id=<?php echo md5($_SESSION["TEACHER_LOGIN"]["ID"]) ?>&pid=<?php echo $_SESSION["TEACHER_LOGIN"]["ID"] ?>">Profile</a>
                         
                         <a class="dropdown-item" href="?action=logout">Logout</a>
                     </div>

@@ -4,8 +4,10 @@ require_once("../inc/getData.php");
 
 $title = "";
 $btnName = "Add Record";
+$required = "required";
 if(isset($_GET["id"]) && $_GET["id"]!="" && $_GET["id"]>0){
     $btnName = "Update Record";
+    $required;
 $id = $_GET["id"];
 $res = mysqli_query($conn, "SELECT * FROM `$table` WHERE `id`='$id'");
 $row = mysqli_fetch_array($res);
@@ -106,7 +108,7 @@ require_once("../inc/breadcrumbs.php")
                                 <label class="col-form-label" for="title">Title <span class="text-danger">*</span>
                                 </label>
                                 <div class="">
-                                    <input type="text" class="form-control" id="title" name="title" placeholder="E.g. Regular Courses" value="<?php echo $title;?>">
+                                    <input type="text" class="form-control" id="title" name="title" placeholder="E.g. Regular Courses" value="<?php echo $title;?>" <?php echo $required;?>>
                                 </div>
                             </div>
                        

@@ -8,12 +8,12 @@ $email = "";
 $password = "";
 $image = "";
 $role = "";
-
+$required = "";
 
 $btnName = "Add Record";
 if (isset($_GET["id"]) && $_GET["id"] != "" && $_GET["id"] > 0) {
     $btnName = "Update Record";
-
+    $required = "";
     $id = $_GET["id"];
     $pid = $_GET["pid"];
     if($id == md5($pid)){
@@ -59,10 +59,10 @@ if (isset($_POST["submit"])) {
         $res = mysqli_query($conn, "UPDATE `$table` SET `name`='$name',`email`='$email',`password`='$password',`image`='$image',`role`='$role' WHERE `id`='$id'");
         if ($res) {
 
-            $_SESSION["AUTH_LOGIN"]["NAME"] = $name;
-            $_SESSION["AUTH_LOGIN"]["EMAIL"] = $email;
-            $_SESSION["AUTH_LOGIN"]["PASSWORD"] = $password;
-            $_SESSION["AUTH_LOGIN"]["IMAGE"] = $image;
+            $_SESSION["ADMIN_LOGIN"]["NAME"] = $name;
+            $_SESSION["ADMIN_LOGIN"]["EMAIL"] = $email;
+            $_SESSION["ADMIN_LOGIN"]["PASSWORD"] = $password;
+            $_SESSION["ADMIN_LOGIN"]["IMAGE"] = $image;
 
             $_SESSION["msg"] = '<div class="alert alert-success alert-dismissible fade show msg">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
@@ -152,12 +152,12 @@ echo $msg;
                                                     </label>
                                                     <div class="">
                                                         <input type="text" class="form-control" id="name" name="name"
-                                                            placeholder="E.g. Admin" value="<?php echo $name; ?>">
+                                                            placeholder="E.g. Admin" value="<?php echo $name; ?>" <?php echo $required;?>>
                                                     </div>
                                                 </div>
                                             </div>
                                             <?php
-                                    if($_SESSION["AUTH_LOGIN"]["ROLE"]==1){
+                                    if($_SESSION["ADMIN_LOGIN"]["ROLE"]==1){
                                     ?>
                                             <div class="col-md-6">
                                                 <div class="form-group ">
@@ -167,7 +167,7 @@ echo $msg;
                                                     <div class="">
                                                         <input type="text" class="form-control" id="email" name="email"
                                                             placeholder="E.g. Admin@mail.com"
-                                                            value="<?php echo $email; ?>">
+                                                            value="<?php echo $email; ?>" <?php echo $required;?>>
                                                     </div>
                                                 </div>
                                             </div>
@@ -179,9 +179,9 @@ echo $msg;
                                                     </label>
                                                     <div class="">
                                                         <input type="password" class="form-control" id="password"
-                                                            name="password" placeholder="E.g. Admin@123" value="">
+                                                            name="password" placeholder="E.g. Admin@123" value="" <?php echo $required;?>>
                                                         <input type="hidden" name="password_old"
-                                                            value="<?php echo $password; ?>">
+                                                            value="<?php echo $password; ?>" >
                                                     </div>
                                                 </div>
                                             </div>
@@ -192,14 +192,14 @@ echo $msg;
                                                     </label>
                                                     <div class="">
                                                         <input type="file" class="form-control" id="image" name="image"
-                                                            placeholder="E.g. Fashion" value="<?php echo $image; ?>">
+                                                            placeholder="E.g. Fashion" value="<?php echo $image; ?>" <?php echo $required;?>>
                                                         <input type="hidden" name="image_old"
                                                             value="<?php echo $image; ?>">
                                                     </div>
                                                 </div>
                                             </div>
                                             <?php
-if($_SESSION["AUTH_LOGIN"]["ROLE"]==1){
+if($_SESSION["ADMIN_LOGIN"]["ROLE"]==1){
 ?>
                                             <div class="col-md-6">
                                                 <div class="form-group ">

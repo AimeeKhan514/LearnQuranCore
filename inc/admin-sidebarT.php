@@ -1,7 +1,7 @@
 <div class="nk-sidebar">
 <div class="nk-nav-scroll">
     <ul class="metismenu" id="menu">
-        <li class="nav-label"><?php echo $_SESSION["AUTH_LOGIN"]["NAME"]?></li>
+        <li class="nav-label"><?php echo $_SESSION["TEACHER_LOGIN"]["NAME"]?></li>
         <!-- <li>
             <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                 <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>

@@ -1,7 +1,7 @@
 <?php
 require_once("../inc/admin-top.php");
 require_once("../inc/getData.php");
-if($_SESSION["AUTH_LOGIN"]["ROLE"]==1){
+if($_SESSION["TEACHER_LOGIN"]["ROLE"]==1){
 
 
 if(isset($_SESSION["msg"])){

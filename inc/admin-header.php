@@ -49,13 +49,13 @@ Header start
             <li class="icons dropdown">
                 <div class="user-img c-pointer position-relative" data-toggle="dropdown">
                     <span class="activity active"></span>
-                    <img src="../images/dashboard/admins/<?php if($_SESSION["AUTH_LOGIN"]["IMAGE"]=="" || $_SESSION["AUTH_LOGIN"]["IMAGE"]==null){echo "manager.png";}else{echo $_SESSION["AUTH_LOGIN"]["IMAGE"];}?>" height="40" width="40" alt="">
+                    <img src="../images/dashboard/admins/<?php if($_SESSION["ADMIN_LOGIN"]["IMAGE"]=="" || $_SESSION["ADMIN_LOGIN"]["IMAGE"]==null){echo "manager.png";}else{echo $_SESSION["ADMIN_LOGIN"]["IMAGE"];}?>" height="40" width="40" alt="">
                 </div>
                 <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
                     <div class="dropdown-content-body">
                         <ul>
                             <li>
-                                <a href="manage-profile?id=<?php echo md5($_SESSION["AUTH_LOGIN"]["ID"])?>&pid=<?php echo $_SESSION["AUTH_LOGIN"]["ID"]?>"><i class="icon-user"></i> <span>Profile</span></a>
+                                <a href="manage-profile?id=<?php echo md5($_SESSION["ADMIN_LOGIN"]["ID"])?>&pid=<?php echo $_SESSION["ADMIN_LOGIN"]["ID"]?>"><i class="icon-user"></i> <span>Profile</span></a>
                             </li>
 
 

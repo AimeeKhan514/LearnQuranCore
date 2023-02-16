@@ -1,7 +1,7 @@
 <div class="nk-sidebar">
 <div class="nk-nav-scroll">
     <ul class="metismenu" id="menu">
-        <li class="nav-label"><?php echo $_SESSION["AUTH_LOGIN"]["NAME"]?></li>
+        <li class="nav-label"><?php echo $_SESSION["ADMIN_LOGIN"]["NAME"]?></li>
         <!-- <li>
             <a class="has-arrow" href="javascript:void()" aria-expanded="false">
                 <i class="icon-speedometer menu-icon"></i><span class="nav-text">Dashboard</span>
@@ -53,7 +53,7 @@
             </a>
         </li>
 <?php
-if($_SESSION["AUTH_LOGIN"]["ROLE"]==1){
+if($_SESSION["ADMIN_LOGIN"]["ROLE"]==1){
 ?>
         <li class="<?php if($pageName == "manage-profile" || $pageName == "trashed-profile"){echo "active";}else{echo "";}?>">
             <a href="profile" aria-expanded="false" class="<?php if($pageName == "manage-profile" || $pageName == "trashed-profile"){echo "active";}else{echo "";}?>">

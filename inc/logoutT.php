@@ -1,10 +1,10 @@
 <?php
 if(isset($_GET["action"]) && $_GET["action"]=="logout"){
-    unset($_SESSION["ADMIN_LOGIN"]);
+    unset($_SESSION["TEACHER_LOGIN"]);
     header("location:index");
 }
 
-if(!isset($_SESSION["ADMIN_LOGIN"])){
+if(!isset($_SESSION["TEACHER_LOGIN"])){
     header("location:index");
     die(); 
 }

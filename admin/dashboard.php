@@ -173,7 +173,7 @@ require_once("../inc/admin-sidebar.php")
                         </div>
                     </a>
                     <?php
-if($_SESSION["AUTH_LOGIN"]["ROLE"]==1){
+if($_SESSION["ADMIN_LOGIN"]["ROLE"]==1){
 ?>
                     <a href="manage-profile" class="col-lg-3">
                         <div class="card card-widget">

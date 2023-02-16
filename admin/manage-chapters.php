@@ -6,9 +6,11 @@ $title = "";
 $subcategory_id = "";
 $description = "";
 $image = "";
+$required = "required";
 $btnName = "Add Record";
 if (isset($_GET["id"]) && $_GET["id"] != "" && $_GET["id"] > 0) {
     $btnName = "Update Record";
+    $required = "";
     $id = $_GET["id"];
     $res = mysqli_query($conn, "SELECT * FROM `$table` WHERE `id`='$id'");
     $row = mysqli_fetch_array($res);
@@ -150,7 +152,7 @@ echo $msg;
                                             <label class="col-form-label" for="title">Title <span class="text-danger">*</span>
                                             </label>
                                             <div class="">
-                                                <input type="text" class="form-control" id="title" name="title" placeholder="E.g. Norani Qaida" value="<?php echo $title; ?>">
+                                                <input type="text" class="form-control" id="title" name="title" placeholder="E.g. Norani Qaida" value="<?php echo $title; ?>" <?php echo $required;?>>
                                             </div>
                                         </div>
                                         </div>
@@ -159,7 +161,7 @@ echo $msg;
                                                     <label class="col-form-label" for="image">Image <span class="text-danger">*</span>
                                                     </label>
                                                     <div class="">
-                                                        <input type="file" class="form-control" id="image" name="image">
+                                                        <input type="file" class="form-control" id="image" name="image" <?php echo $required;?>>
                                                         <input type="hidden" name="image_old" value="<?php echo $image;?>">
                                                     </div>
                                                 </div>
@@ -169,7 +171,7 @@ echo $msg;
                                                     <label class="col-form-label" for="description">Description <span class="text-danger">*</span>
                                                     </label>
                                                     <div class="">
-                                                        <textarea class="form-control" id="description" name="description"><?php echo $description; ?></textarea>
+                                                        <textarea class="form-control" id="description" name="description" <?php echo $required;?>><?php echo $description; ?></textarea>
                                                     </div>
                                                 </div>
                                             </div>

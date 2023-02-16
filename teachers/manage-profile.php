@@ -59,10 +59,10 @@ if (isset($_POST["submit"])) {
         $res = mysqli_query($conn, "UPDATE `$table` SET `name`='$name',`email`='$email',`password`='$password',`image`='$image',`role`='$role' WHERE `id`='$id'");
         if ($res) {
 
-            $_SESSION["AUTH_LOGIN"]["NAME"] = $name;
-            $_SESSION["AUTH_LOGIN"]["EMAIL"] = $email;
-            $_SESSION["AUTH_LOGIN"]["PASSWORD"] = $password;
-            $_SESSION["AUTH_LOGIN"]["IMAGE"] = $image;
+            $_SESSION["TEACHER_LOGIN"]["NAME"] = $name;
+            $_SESSION["TEACHER_LOGIN"]["EMAIL"] = $email;
+            $_SESSION["TEACHER_LOGIN"]["PASSWORD"] = $password;
+            $_SESSION["TEACHER_LOGIN"]["IMAGE"] = $image;
 
             $_SESSION["msg"] = '<div class="alert alert-success alert-dismissible fade show msg">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
@@ -157,7 +157,7 @@ echo $msg;
                                                 </div>
                                             </div>
                                             <?php
-                                    if($_SESSION["AUTH_LOGIN"]["ROLE"]==1){
+                                    if($_SESSION["TEACHER_LOGIN"]["ROLE"]==1){
                                     ?>
                                             <div class="col-md-6">
                                                 <div class="form-group ">
@@ -199,7 +199,7 @@ echo $msg;
                                                 </div>
                                             </div>
                                             <?php
-if($_SESSION["AUTH_LOGIN"]["ROLE"]==1){
+if($_SESSION["TEACHER_LOGIN"]["ROLE"]==1){
 ?>
                                             <div class="col-md-6">
                                                 <div class="form-group ">

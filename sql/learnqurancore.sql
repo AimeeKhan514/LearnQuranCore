@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 14, 2023 at 04:06 PM
+-- Generation Time: Feb 16, 2023 at 04:23 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -44,7 +44,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id`, `name`, `email`, `password`, `image`, `role`, `status`, `added_on`, `trashed_on`) VALUES
-(1, 'admin', 'admin@mail.com', '0e7517141fb53f21ee439b355b5a1d0a', 'manager.png', 1, 1, '2023-02-14 07:57:35', ''),
+(1, 'admin1', 'admin@mail.com', '0e7517141fb53f21ee439b355b5a1d0a', 'manager.png', 1, 1, '2023-02-15 07:18:00', ''),
 (2, 'Editor', 'editor@mail.com', '9888593f48ba9b1a34b7465709975c8a', '', 2, 1, '2023-02-09 11:16:28', '');
 
 -- --------------------------------------------------------
@@ -68,7 +68,7 @@ CREATE TABLE `categories` (
 INSERT INTO `categories` (`id`, `title`, `status`, `added_on`, `trashed_on`) VALUES
 (1, 'Regular Courses', 1, '2023-02-13 07:27:40', ''),
 (2, 'Addition Courses', 1, '2023-02-14 06:39:58', ''),
-(3, 'Learning Material', 1, '2023-02-14 06:40:19', '');
+(3, 'Learning Material', 1, '2023-02-16 07:23:32', '');
 
 -- --------------------------------------------------------
 
@@ -127,6 +127,37 @@ INSERT INTO `chaptersdetails` (`id`, `subcategory_id`, `chapter_id`, `title`, `i
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `students`
+--
+
+CREATE TABLE `students` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `father_name` varchar(255) NOT NULL,
+  `nationality` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `gender` tinyint(4) NOT NULL,
+  `qualification` text NOT NULL,
+  `address` text NOT NULL,
+  `added_by` int(11) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `added_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `trashed_on` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `students`
+--
+
+INSERT INTO `students` (`id`, `name`, `email`, `password`, `image`, `father_name`, `nationality`, `phone`, `gender`, `qualification`, `address`, `added_by`, `status`, `added_on`, `trashed_on`) VALUES
+(1, 'Student', 'Student@mail.com', 'cd41287b93a9317b6b2d1da8bec1def1', '350555891_3-DUAS.jpeg', 'StudentF', 'Pakistani', '0000000000', 2, 'CS', '&lt;p&gt;Address&lt;/p&gt;', 2, 1, '2023-02-15 09:02:15', '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `subcategories`
 --
 
@@ -152,7 +183,10 @@ INSERT INTO `subcategories` (`id`, `category_id`, `title`, `description`, `age`,
 (4, 2, '6 Kalmas', '&lt;p&gt;all 6 kalmas&lt;/p&gt;', '9', '270442778_6-kalmas.jpeg', 1, '2023-02-14 06:44:25', ''),
 (5, 2, 'Duas Section 1', '&lt;p&gt;Basic Duas Section 1 for Beginners&lt;/p&gt;', '1', '838008285_Duas.png', 1, '2023-02-14 06:45:15', ''),
 (6, 2, 'Duas Section 2', '&lt;p&gt;Basic Duas Section 1 for Beginners&lt;/p&gt;', '1', '979800098_Duas.png', 1, '2023-02-14 06:45:49', ''),
-(7, 3, '3 DUAS', '&lt;p&gt;A Shiny Day&lt;/p&gt;', '5', '941984478_3-DUAS.jpeg', 1, '2023-02-14 06:47:27', '');
+(7, 3, '3 Duas', '&lt;p&gt;A Shiny Day&lt;/p&gt;', '5', '941984478_3-DUAS.jpeg', 1, '2023-02-16 07:25:18', ''),
+(8, 0, '', '', '', '', 1, '2023-02-16 11:12:35', ''),
+(9, 0, '', '', '', '', 1, '2023-02-16 11:19:29', ''),
+(10, 0, '', '', '', '', 1, '2023-02-16 11:19:39', '');
 
 -- --------------------------------------------------------
 
@@ -183,7 +217,31 @@ CREATE TABLE `teachers` (
   `zoom_username` varchar(255) NOT NULL,
   `zoom_id` varchar(255) NOT NULL,
   `zoom_password` varchar(255) NOT NULL,
-  `added_by` tinyint(4) NOT NULL,
+  `added_by` int(11) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `added_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `trashed_on` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `teachers`
+--
+
+INSERT INTO `teachers` (`id`, `name`, `email`, `password`, `image`, `father_name`, `cnic`, `nationality`, `phone1`, `phone2`, `gender`, `marital_status`, `qualification`, `experience`, `address`, `bank_account_title`, `bank_name`, `bank_branch_code`, `bank_account_number`, `zoom_username`, `zoom_id`, `zoom_password`, `added_by`, `status`, `added_on`, `trashed_on`) VALUES
+(1, 'teacher', 'teacher@mail.com', 'ea62920343f2ea175f749d7da6ab3792', '693397048_3-DUAS.jpeg', 'teacherf', '00000000000', 'pakistani', '000000000000000', '000000000000000', 1, 'Married', 'BSCS', '&lt;p&gt;4 Years&lt;/p&gt;', '&lt;p&gt;address&lt;/p&gt;', 'teacher', 'HBL', '1481', '000000000000', 'teacher', '0000000000000', '000000000000', 2, 1, '2023-02-16 07:31:59', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `added_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `trashed_on` varchar(255) NOT NULL
@@ -218,6 +276,12 @@ ALTER TABLE `chaptersdetails`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `students`
+--
+ALTER TABLE `students`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `subcategories`
 --
 ALTER TABLE `subcategories`
@@ -227,6 +291,12 @@ ALTER TABLE `subcategories`
 -- Indexes for table `teachers`
 --
 ALTER TABLE `teachers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -258,15 +328,27 @@ ALTER TABLE `chaptersdetails`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `students`
+--
+ALTER TABLE `students`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `subcategories`
 --
 ALTER TABLE `subcategories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `teachers`
 --
 ALTER TABLE `teachers`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
