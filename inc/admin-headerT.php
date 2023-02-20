@@ -69,7 +69,7 @@ Header end ti-comment-alt
                         </div>
                     </a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="manage-profile?id=<?php echo md5($_SESSION["TEACHER_LOGIN"]["ID"]) ?>&pid=<?php echo $_SESSION["TEACHER_LOGIN"]["ID"] ?>">Profile</a>
+                        <a class="dropdown-item" href="profile?id=<?php echo md5($_SESSION["TEACHER_LOGIN"]["ID"]) ?>">Profile</a>
                         
                         <a class="dropdown-item" href="?action=logout">Logout</a>
                     </div>

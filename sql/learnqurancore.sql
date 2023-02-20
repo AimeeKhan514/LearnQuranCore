@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 16, 2023 at 04:23 PM
+-- Generation Time: Feb 20, 2023 at 04:20 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -228,7 +228,7 @@ CREATE TABLE `teachers` (
 --
 
 INSERT INTO `teachers` (`id`, `name`, `email`, `password`, `image`, `father_name`, `cnic`, `nationality`, `phone1`, `phone2`, `gender`, `marital_status`, `qualification`, `experience`, `address`, `bank_account_title`, `bank_name`, `bank_branch_code`, `bank_account_number`, `zoom_username`, `zoom_id`, `zoom_password`, `added_by`, `status`, `added_on`, `trashed_on`) VALUES
-(1, 'teacher', 'teacher@mail.com', 'ea62920343f2ea175f749d7da6ab3792', '693397048_3-DUAS.jpeg', 'teacherf', '00000000000', 'pakistani', '000000000000000', '000000000000000', 1, 'Married', 'BSCS', '&lt;p&gt;4 Years&lt;/p&gt;', '&lt;p&gt;address&lt;/p&gt;', 'teacher', 'HBL', '1481', '000000000000', 'teacher', '0000000000000', '000000000000', 2, 1, '2023-02-16 07:31:59', '');
+(1, 'teacher', 'teacher@mail.com', 'ea62920343f2ea175f749d7da6ab3792', '268416464_Ahsan-Al-Qawaed.jpeg', 'Teacher Father', '00000000000', 'pakistani', '000000000000000', '000000000000000', 1, 'Single', 'BSCS', '&lt;p&gt;4 Years&lt;/p&gt;', '&lt;p&gt;address&lt;/p&gt;', 'teacher', 'HBL', '1481', '000000000000', 'teacher', '0000000000000', '000000000000', 2, 1, '2023-02-20 15:18:00', '');
 
 -- --------------------------------------------------------
 
