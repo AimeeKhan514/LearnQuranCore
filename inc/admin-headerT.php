@@ -57,6 +57,9 @@ Header end ti-comment-alt
                 <li class="nav-item <?php if($pageName == "course-materials"){echo "active";}else{echo "";}?>">
                     <a class="nav-link" href="course-materials">Course Materials</a>
                 </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="?action=logout">Logout</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
                         <div class="user-img c-pointer position-relative">

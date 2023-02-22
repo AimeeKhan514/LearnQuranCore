@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 20, 2023 at 04:20 PM
+-- Generation Time: Feb 21, 2023 at 04:36 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -127,6 +127,68 @@ INSERT INTO `chaptersdetails` (`id`, `subcategory_id`, `chapter_id`, `title`, `i
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `classes`
+--
+
+CREATE TABLE `classes` (
+  `id` int(11) NOT NULL,
+  `teacher_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `teacher_time` datetime NOT NULL,
+  `student_time` datetime NOT NULL,
+  `date` date NOT NULL,
+  `day` varchar(255) NOT NULL,
+  `time` varchar(255) NOT NULL,
+  `subcategory_id` int(11) NOT NULL,
+  `chapter_id` int(11) NOT NULL,
+  `activate_time` datetime NOT NULL,
+  `leave_time` datetime NOT NULL,
+  `start_time` datetime NOT NULL,
+  `absent_time` datetime NOT NULL,
+  `end_time` datetime NOT NULL,
+  `taken_time` datetime NOT NULL,
+  `onleave_time` datetime NOT NULL,
+  `re_schedule_day` varchar(255) NOT NULL,
+  `re_schedule_time` varchar(255) NOT NULL,
+  `class_status` tinyint(4) NOT NULL DEFAULT 9,
+  `approvel` tinyint(4) NOT NULL DEFAULT 1,
+  `added_by` int(11) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `added_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `trashed_on` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `class_status`
+--
+
+CREATE TABLE `class_status` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `status` tinyint(4) NOT NULL DEFAULT 1,
+  `added_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `class_status`
+--
+
+INSERT INTO `class_status` (`id`, `title`, `status`, `added_on`) VALUES
+(1, 'Activate', 1, '2023-02-21 14:15:00'),
+(2, 'Leave', 1, '2023-02-21 14:15:00'),
+(3, 'Start', 1, '2023-02-21 14:17:37'),
+(4, 'Absent', 1, '2023-02-21 14:17:37'),
+(5, 'End', 1, '2023-02-21 14:17:37'),
+(6, 'Taken', 1, '2023-02-21 14:17:37'),
+(7, 'Re-schedule', 1, '2023-02-21 14:17:37'),
+(8, 'On Leave', 1, '2023-02-21 14:20:11'),
+(9, 'Pending', 1, '2023-02-21 14:27:44');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `students`
 --
 
@@ -142,6 +204,7 @@ CREATE TABLE `students` (
   `gender` tinyint(4) NOT NULL,
   `qualification` text NOT NULL,
   `address` text NOT NULL,
+  `course_status` tinyint(4) NOT NULL DEFAULT 0,
   `added_by` int(11) NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `added_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
@@ -152,8 +215,9 @@ CREATE TABLE `students` (
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `name`, `email`, `password`, `image`, `father_name`, `nationality`, `phone`, `gender`, `qualification`, `address`, `added_by`, `status`, `added_on`, `trashed_on`) VALUES
-(1, 'Student', 'Student@mail.com', 'cd41287b93a9317b6b2d1da8bec1def1', '350555891_3-DUAS.jpeg', 'StudentF', 'Pakistani', '0000000000', 2, 'CS', '&lt;p&gt;Address&lt;/p&gt;', 2, 1, '2023-02-15 09:02:15', '');
+INSERT INTO `students` (`id`, `name`, `email`, `password`, `image`, `father_name`, `nationality`, `phone`, `gender`, `qualification`, `address`, `course_status`, `added_by`, `status`, `added_on`, `trashed_on`) VALUES
+(1, 'Student', 'Student@mail.com', 'cd41287b93a9317b6b2d1da8bec1def1', '350555891_3-DUAS.jpeg', 'StudentF', 'Pakistani', '0000000000', 2, 'CS', '&lt;p&gt;Address&lt;/p&gt;', 1, 2, 1, '2023-02-21 11:18:00', ''),
+(2, 'student2', 'student2@mail.com', 'a0b965b1344ad21b7afd6386fee756ef', '', 'student2F', 'Indian', '000000000000', 1, 'Matric', '&lt;p&gt;india&lt;/p&gt;', 0, 1, 1, '2023-02-21 11:18:48', '');
 
 -- --------------------------------------------------------
 
@@ -228,7 +292,8 @@ CREATE TABLE `teachers` (
 --
 
 INSERT INTO `teachers` (`id`, `name`, `email`, `password`, `image`, `father_name`, `cnic`, `nationality`, `phone1`, `phone2`, `gender`, `marital_status`, `qualification`, `experience`, `address`, `bank_account_title`, `bank_name`, `bank_branch_code`, `bank_account_number`, `zoom_username`, `zoom_id`, `zoom_password`, `added_by`, `status`, `added_on`, `trashed_on`) VALUES
-(1, 'teacher', 'teacher@mail.com', 'ea62920343f2ea175f749d7da6ab3792', '268416464_Ahsan-Al-Qawaed.jpeg', 'Teacher Father', '00000000000', 'pakistani', '000000000000000', '000000000000000', 1, 'Single', 'BSCS', '&lt;p&gt;4 Years&lt;/p&gt;', '&lt;p&gt;address&lt;/p&gt;', 'teacher', 'HBL', '1481', '000000000000', 'teacher', '0000000000000', '000000000000', 2, 1, '2023-02-20 15:18:00', '');
+(1, 'teacher1', 'teacher1@mail.com', '8f31d9f0cad22c1c4c3d6d52a18b3822', '268416464_Ahsan-Al-Qawaed.jpeg', 'Teacher Father', '00000000000', 'pakistani', '000000000000000', '000000000000000', 1, 'Single', 'BSCS', '&lt;p&gt;4 Years&lt;/p&gt;', '&lt;p&gt;address&lt;/p&gt;', 'teacher', 'HBL', '1481', '000000000000', 'teacher', '0000000000000', '000000000000', 1, 1, '2023-02-21 10:56:10', ''),
+(3, 'teacher2', 'teacher2@mail.com', '1e3b004fd3d4d8713e2476a6706a1c14', '836416072_VantageDroidCoursePage.jpg', 'teacher2f', '00000000000', 'American', '0000000000000000000', '000000000000000', 2, 'Divorced', 'BSSE', '&lt;p&gt;3 Years&lt;/p&gt;', '&lt;p&gt;address&lt;/p&gt;', 'teacher2', 'HBL2', '00000000', '000000000', 'teacher2', '0000000', '0000000000000000', 1, 1, '2023-02-21 11:10:23', '');
 
 -- --------------------------------------------------------
 
@@ -273,6 +338,18 @@ ALTER TABLE `chapters`
 -- Indexes for table `chaptersdetails`
 --
 ALTER TABLE `chaptersdetails`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `classes`
+--
+ALTER TABLE `classes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `class_status`
+--
+ALTER TABLE `class_status`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -328,10 +405,22 @@ ALTER TABLE `chaptersdetails`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `classes`
+--
+ALTER TABLE `classes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `class_status`
+--
+ALTER TABLE `class_status`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `subcategories`
@@ -343,7 +432,7 @@ ALTER TABLE `subcategories`
 -- AUTO_INCREMENT for table `teachers`
 --
 ALTER TABLE `teachers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`

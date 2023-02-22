@@ -271,7 +271,7 @@ echo $msg;
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <div class="col-12">
+                                            <div class="col-12 p-0">
                                                 <button type="submit" class="btn btn-primary"
                                                     name="submit"><?php echo $btnName; ?></button>
                                             </div>

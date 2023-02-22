@@ -24,6 +24,14 @@ if(isset($_GET["action"]) && $_GET["action"]!=""){
             mysqli_query($conn,"UPDATE `$table` SET `trashed_on`='' WHERE `id`='$id'");
             header("location:$pageName");
         }
+        if($_GET["action"]=="regular"){
+            mysqli_query($conn,"UPDATE `$table` SET `course_status`='1' WHERE `id`='$id'");
+            header("location:$pageName");
+        }
+        if($_GET["action"]=="trial"){
+            mysqli_query($conn,"UPDATE `$table` SET `course_status`='0' WHERE `id`='$id'");
+            header("location:$pageName");
+        }
     }
 }
 

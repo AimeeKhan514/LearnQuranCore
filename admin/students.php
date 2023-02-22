@@ -81,6 +81,7 @@ require_once("../inc/breadcrumbs.php")
                                                 <th>gender</th>
                                                 <th>qualification</th>
                                                 <th>address</th>
+                                                <th>Course Status</th>
                                                 <th>added by</th>
                                                 <th>Status</th>
                                                 <th>Added On</th>
@@ -117,6 +118,14 @@ require_once("../inc/breadcrumbs.php")
                                                 <td>
                                                 <p class="text-truncate" style="max-width:100px ;"  data-toggle="tooltip" data-placement="left" title="<?php echo strip_tags(html_entity_decode($row["address"]));?>"><?php echo strip_tags(html_entity_decode($row["address"]));?></p>
                                             </td>
+                                            <td><?php 
+                                                if($row["course_status"]==1){
+                                                    echo '<a href="?action=trial&id='.$row["id"].'" class="btn btn-sm btn-info bg-gradient">Regular</a>';
+
+                                                }else{
+                                                    echo '<a href="?action=regular&id='.$row["id"].'" class="btn btn-sm btn-warning bg-gradient">Trial</a>';
+                                                }
+                                                ?></td>
 
                                                 <td data-toggle="tooltip" data-placement="top" title="<?php if($getName["role"]==1){echo "Admin";}else{echo "Editor";}?>">
                                                 <?php echo $getName["name"];

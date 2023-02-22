@@ -335,21 +335,19 @@ echo $msg;
                                             </div>
                                              <div class="col-md-6">
                                                 <div class="form-group ">
-                                                    <label class="col-form-label" for="experience">Experience<span class="text-danger">*</span>
+                                                    <label class="col-form-label" for="experience">Experience <span class="small">(Optional)</span>
                                                     </label>
                                                     <div class="">
-                                                        <textarea class="form-control" id="experience" name="experience"
-                                                            placeholder="E.g. 4 Years" <?php echo $required;?>><?php echo $experience; ?></textarea>
+                                                        <textarea class="form-control" id="experience" name="experience"  placeholder="E.g. 4 Years"><?php echo $experience; ?></textarea>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group ">
-                                                    <label class="col-form-label" for="address">Address<span class="text-danger">*</span>
+                                                    <label class="col-form-label" for="address">Address <span class="small">(Optional)</span>
                                                     </label>
                                                     <div class="">
-                                                        <textarea class="form-control" id="address" name="address"
-                                                            placeholder="E.g. Type Address" <?php echo $required;?>><?php echo $address; ?></textarea>
+                                                        <textarea class="form-control" id="address" name="address" placeholder="E.g. Type Address"><?php echo $address; ?></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -431,9 +429,9 @@ echo $msg;
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <div class="col-12">
+                                            <div class="col-12 p-0">
                                                 <button type="submit" class="btn btn-primary"
-                                                    name="submit"><?php echo $btnName; ?></button>
+                                                    name="submit"><?php echo $btnName;?></button>
                                             </div>
                                         </div>
                                     </form>

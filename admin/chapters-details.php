@@ -29,7 +29,7 @@ if(isset($_SESSION["msg"])){
         Main wrapper start
     ***********************************-->
     <div id="main-wrapper">
-    <?php
+        <?php
 require_once("../inc/admin-header.php")
 ?>
 
@@ -49,16 +49,16 @@ require_once("../inc/admin-sidebar.php")
         ***********************************-->
         <div class="content-body">
 
-        <?php
+            <?php
 require_once("../inc/breadcrumbs.php")
 
 ?>
 
-<div class="container-fluid">
+            <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-body">
+                        <div class="card-body">
                                <div class="text-right">
                                <a href="manage-chapters-details" class="btn btn-sm btn-primary">Add New</a>
                                <?php
@@ -118,11 +118,9 @@ require_once("../inc/breadcrumbs.php")
                                             </td>
                                                 <td><?php echo $row["title"];?></td>
                                                 <td>
-                                                <td>
                                                 <a href="../images/dashboard/chapters-details/<?php if($row["image"]=="" || $row["image"]==null){echo "chapters-details.png";}else{echo $row["image"];}?>" target="_blank">
                                                 <img src="../images/dashboard/chapters-details/<?php if($row["image"]=="" || $row["image"]==null){echo "chapters-details.png";}else{echo $row["image"];}?>" class=" rounded-circle mr-3 max-image-60px" alt="">
                                                 </a>
-                                                </td>
                                                 </td>
                                                 <td><?php 
                                                 if($row["status"]==1){
@@ -156,9 +154,9 @@ require_once("../inc/breadcrumbs.php")
                     </div>
                 </div>
             </div>
-            
-<!-- #/ container -->
-</div>
+
+            <!-- #/ container -->
+        </div>
         <!--**********************************
             Content body end
         ***********************************-->
@@ -185,8 +183,3 @@ require_once("../inc/admin-footer.php")
     <?php
 require_once("../inc/admin-bottom.php")
 ?>
-<script>
-    $(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
-</script>

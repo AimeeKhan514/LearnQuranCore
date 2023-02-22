@@ -62,8 +62,8 @@ require_once("../inc/breadcrumbs.php")
                                <div class="text-right">
                                <a href="manage-categories" class="btn btn-sm btn-primary">Add New</a>
                                <?php
-if($_SESSION["ADMIN_LOGIN"]["ROLE"]==1){
-?>
+                                if($_SESSION["ADMIN_LOGIN"]["ROLE"]==1){
+                                ?>
                                <a href="trashed-categories" class="btn btn-sm btn-outline-primary">Trash</a>
                               <?php }?>
                             </div>
