@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2023 at 04:36 PM
+-- Generation Time: Feb 23, 2023 at 04:11 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -134,20 +134,20 @@ CREATE TABLE `classes` (
   `id` int(11) NOT NULL,
   `teacher_id` int(11) NOT NULL,
   `student_id` int(11) NOT NULL,
-  `teacher_time` datetime NOT NULL,
-  `student_time` datetime NOT NULL,
+  `teacher_time` varchar(255) NOT NULL,
+  `student_time` varchar(255) NOT NULL,
   `date` date NOT NULL,
   `day` varchar(255) NOT NULL,
   `time` varchar(255) NOT NULL,
   `subcategory_id` int(11) NOT NULL,
   `chapter_id` int(11) NOT NULL,
-  `activate_time` datetime NOT NULL,
-  `leave_time` datetime NOT NULL,
-  `start_time` datetime NOT NULL,
-  `absent_time` datetime NOT NULL,
-  `end_time` datetime NOT NULL,
-  `taken_time` datetime NOT NULL,
-  `onleave_time` datetime NOT NULL,
+  `activate_time` varchar(255) NOT NULL,
+  `leave_time` varchar(255) NOT NULL,
+  `start_time` varchar(255) NOT NULL,
+  `absent_time` varchar(255) NOT NULL,
+  `end_time` varchar(255) NOT NULL,
+  `taken_time` varchar(255) NOT NULL,
+  `onleave_time` varchar(255) NOT NULL,
   `re_schedule_day` varchar(255) NOT NULL,
   `re_schedule_time` varchar(255) NOT NULL,
   `class_status` tinyint(4) NOT NULL DEFAULT 9,

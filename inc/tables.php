@@ -23,6 +23,9 @@ if($pageName == "manage-teachers" || $pageName == "teachers" || $pageName == "tr
 if($pageName == "manage-students" || $pageName == "students" || $pageName == "trashed-students"){
     $table = "students";
 }
+if($pageName == "manage-classes" || $pageName == "classes" || $pageName == "trashed-classes"){
+    $table = "classes";
+}
 
 
 ?>

@@ -127,12 +127,15 @@ echo $msg;
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group ">
-                                                    <label class="col-form-label" for="subcategory_id">Sub Categories <span class="text-danger">*</span>
+                                                    <label class="col-form-label" for="subcategory_id">Sub Categories
+                                                        <span class="text-danger">*</span>
                                                     </label>
                                                     <div class="">
-                                                        <select class="form-control" id="subcategory_id" name="subcategory_id">
+                                                        <select class="form-control" id="subcategory_id"
+                                                            name="subcategory_id">
 
-                                                            <option value="" hidden selected>Select Sub Categories</option>
+                                                            <option value="" hidden selected>Select Sub Categories
+                                                            </option>
                                                             <?php
 
                                                             $resCat = mysqli_query($conn, "SELECT * FROM `subcategories` WHERE `trashed_on`='' AND `status`='1'");
@@ -156,7 +159,8 @@ echo $msg;
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group ">
-                                                    <label class="col-form-label" for="chapter_id">Chapters<span class="text-danger">*</span>
+                                                    <label class="col-form-label" for="chapter_id">Chapters<span
+                                                            class="text-danger">*</span>
                                                     </label>
                                                     <div class="">
                                                         <select class="form-control" id="chapter_id" name="chapter_id">
@@ -181,8 +185,8 @@ echo $msg;
                                                             }
                                                             ?>
 
-                                                            
-                                                       
+
+
 
                                                         </select>
                                                     </div>
@@ -190,30 +194,38 @@ echo $msg;
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group ">
-                                                    <label class="col-form-label" for="title">Title <span class="text-danger">*</span>
+                                                    <label class="col-form-label" for="title">Title <span
+                                                            class="text-danger">*</span>
                                                     </label>
                                                     <div class="">
-                                                        <input type="text" class="form-control" id="title" name="title" placeholder="E.g. Norani Qaida 1" value="<?php echo $title; ?>" <?php echo $required;?>>
+                                                        <input type="text" class="form-control" id="title" name="title"
+                                                            placeholder="E.g. Norani Qaida 1"
+                                                            value="<?php echo $title; ?>" <?php echo $required;?>>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group ">
-                                                    <label class="col-form-label" for="image">Image <span class="text-danger">*</span>
+                                                    <label class="col-form-label" for="image">Image <span
+                                                            class="text-danger">*</span>
                                                     </label>
                                                     <div class="">
-                                                        <input type="file" class="form-control" id="image" name="image" placeholder="E.g. Fashion" value="<?php echo $image; ?>" <?php echo $required;?>>
-                                                        <input type="hidden" name="image_old" value="<?php echo $image; ?>">
+                                                        <input type="file" class="form-control" id="image" name="image"
+                                                            placeholder="E.g. Fashion" value="<?php echo $image; ?>"
+                                                            <?php echo $required;?>>
+                                                        <input type="hidden" name="image_old"
+                                                            value="<?php echo $image; ?>">
                                                     </div>
                                                 </div>
                                             </div>
-                                        
+
                                         </div>
 
 
                                         <div class="form-group">
                                             <div class="col-12">
-                                                <button type="submit" class="btn btn-primary" name="submit"><?php echo $btnName; ?></button>
+                                                <button type="submit" class="btn btn-primary"
+                                                    name="submit"><?php echo $btnName; ?></button>
                                             </div>
                                         </div>
                                     </form>
@@ -252,22 +264,20 @@ echo $msg;
     require_once("../inc/admin-bottom.php")
     ?>
     <script>
-
-        $(document).ready(function(){
-           $("#subcategory_id").change(function(){
+    $(document).ready(function() {
+        $("#subcategory_id").change(function() {
             $subcategory_id = $("#subcategory_id").val();
             $.ajax({
-                "url":"getChapters.php",
-                "type":"post",
-                "data":"subcategory_id="+$subcategory_id,
-                "success":function(result){
+                "url": "getChapters.php",
+                "type": "post",
+                "data": "subcategory_id=" + $subcategory_id,
+                "success": function(result) {
                     $("#chapter_id").html(result);
 
                 }
             });
-            
 
-           });
+
         });
-
+    });
     </script>
