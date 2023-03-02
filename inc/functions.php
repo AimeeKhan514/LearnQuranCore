@@ -65,6 +65,23 @@ function getName($conn, $table="", $id=""){
     }
     
 }
+function getFullName($conn, $table="", $id=""){
+    $sql = " SELECT * FROM  `$table` WHERE `status`='1' AND `id`='$id' ";
+    $res = mysqli_query($conn,$sql);
+    if(mysqli_num_rows($res)>0){
+        $row = mysqli_fetch_assoc($res);
+        if($table=="categories" || $table=="subcategories" || $table=="chapters" || $table=="chaptersdetails"|| $table=="class_status"){
+            echo $row["title"];
+        }
+        if($table=="students" || $table=="teachers"){
+            echo $row["name"];
+        }
+       
+    }else{
+        echo "---";
+    }
+    
+}
 function get_times ($default = '19:00', $interval = '+30 minutes') {
 
     $output = '';
@@ -74,7 +91,7 @@ function get_times ($default = '19:00', $interval = '+30 minutes') {
 
     while ($current <= $end) {
         $time = date('H:i', $current);
-        $sel = ($time == $default) ? ' selected' : '';
+        $sel = ($time == $default) ? ' selected' : 'OK';
 
         $output .= "<option value=\"{$time}\"{$sel}>" . date('h.i A', $current) .'</option>';
         $current = strtotime($interval, $current);

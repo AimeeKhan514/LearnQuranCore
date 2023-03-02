@@ -76,7 +76,7 @@ if (isset($_POST["submit"])) {
 
 
     if (isset($_GET["id"]) && $_GET["id"] != "" && $_GET["id"] > 0) {
-        $res = mysqli_query($conn, "UPDATE `$table` SET `teacher_id`='$teacher_id',`student_id`='$student_id',`teacher_time`='$teacher_time',`date`='$date', `day`='$day',`time`='$time',`subcategory_id`='$subcategory_id',`chapter_id`='$chapter_id', `activate_time`='$activate_time',`leave_time`='$leave_time',`start_time`='$start_time',`absent_time`='$absent_time', `end_time`='$end_time',`taken_time`='$taken_time',`onleave_time`='$onleave_time',`re_schedule_day`='$re_schedule_day',`re_schedule_time`='$re_schedule_time',`added_by`='$added_by' WHERE `id`='$id'");
+        $res = mysqli_query($conn, "UPDATE `$table` SET `teacher_id`='$teacher_id',`student_id`='$student_id',`teacher_time`='$teacher_time',`student_time`='$student_time',`date`='$date', `day`='$day',`time`='$time',`subcategory_id`='$subcategory_id',`chapter_id`='$chapter_id', `activate_time`='$activate_time',`leave_time`='$leave_time',`start_time`='$start_time',`absent_time`='$absent_time', `end_time`='$end_time',`taken_time`='$taken_time',`onleave_time`='$onleave_time',`re_schedule_day`='$re_schedule_day',`re_schedule_time`='$re_schedule_time',`added_by`='$added_by' WHERE `id`='$id'");
         if ($res) {
             $_SESSION["msg"] = '<div class="alert alert-success alert-dismissible fade show msg">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
@@ -190,7 +190,7 @@ echo $msg;
                                                     <div class="">
                                                    
                                                         <select class="form-control" id="teacher_time" name="teacher_time">
-                                                            <?php echo get_times(); ?>
+                                                            <?php echo get_times($teacher_time); ?>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -228,7 +228,7 @@ echo $msg;
                                                     </label>
                                                     <div class="">
                                                         <select class="form-control" id="student_time" name="student_time">
-                                                            <?php echo get_times(); ?>
+                                                            <?php echo get_times($student_time); ?>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -267,7 +267,7 @@ echo $msg;
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group ">
-                                                    <label class="col-form-label" for="subcategory_id">Sub Categories
+                                                    <label class="col-form-label" for="subcategory_id">Course Sub Categories
                                                         <span class="text-danger">*</span>
                                                     </label>
                                                     <div class="">
@@ -299,7 +299,7 @@ echo $msg;
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group ">
-                                                    <label class="col-form-label" for="chapter_id">Chapters<span
+                                                    <label class="col-form-label" for="chapter_id">Course Chapters<span
                                                             class="text-danger">*</span>
                                                     </label>
                                                     <div class="">

@@ -60,11 +60,11 @@ require_once("../inc/breadcrumbs.php")
                         <div class="card">
                             <div class="card-body">
                                <div class="text-right">
-                               <a href="manage-chapters" class="btn btn-sm btn-primary">Add New</a>
+                               <a href="manage-classes" class="btn btn-sm btn-primary">Add New</a>
                                <?php
                                 if($_SESSION["ADMIN_LOGIN"]["ROLE"]==1){
                                 ?>
-                               <a href="trashed-chapters" class="btn btn-sm btn-outline-primary">Trash</a>
+                               <a href="trashed-classes" class="btn btn-sm btn-outline-primary">Trash</a>
                                <?php }?>
                                </div>
                                 <div class="table-responsive">
@@ -110,21 +110,56 @@ require_once("../inc/breadcrumbs.php")
                                             <tr>
                                                 <td><?php echo $sr;?></td>
                                                 <td><?php echo $row["id"];?></td>
+                                                <td><?php getFullName($conn,'teachers',$row["teacher_id"]);?></td>
+                                                <td><?php echo $row["teacher_time"];?></td>
+                                                <td><?php getFullName($conn,'students',$row["student_id"]);?></td>
+                                                <td><?php echo $row["student_time"];?></td>
+                                                <td><?php echo date("D-d-M-y",strtotime($row["date"]));?></td>
+                                                <td><?php echo $row["day"];?></td>
+                                                <td><?php echo $row["time"];?></td>
+                                                <td><?php getFullName($conn,'subcategories',$row["subcategory_id"]);?></td>
+                                                <td><?php getFullName($conn,'chapters',$row["chapter_id"]);?></td>
+                                                
+                                                <td><?php echo $row["activate_time"];?></td>
+                                                <td><?php echo $row["leave_time"];?></td>
+                                                <td><?php echo $row["start_time"];?></td>
+                                                <td><?php echo $row["absent_time"];?></td>
+                                                <td><?php echo $row["end_time"];?></td>
+                                                <td><?php echo $row["taken_time"];?></td>
+                                                <td><?php echo $row["onleave_time"];?></td>
+                                                <td><?php echo $row["re_schedule_day"];?></td>
+                                                <td><?php echo $row["re_schedule_time"];?></td>
                                                 <td>
-                                                    <?php 
-                                                    $resCat = mysqli_query($conn,"SELECT * FROM `subcategories` WHERE `status`='1' AND `id`='".$row["subcategory_id"]."'");
-                                                    if($row["subcategory_id"]==0){
-                                                        echo "----";
-                                                    }else{
-                                                        $rowCat = mysqli_fetch_array($resCat);
-                                                        echo $rowCat["title"];
-                                                    }
-                                                    
-                                                    ;?>
-                                            </td>
-                                                <td><?php echo $row["title"];?></td>
-                                               
-                                              
+                                                <div class="basic-dropdown">
+                                    <div class="dropdown">
+                                        <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown"><?php getFullName($conn,'class_status',$row["class_status"]);?></button>
+                                        <div class="dropdown-menu">
+                                            <?php 
+                                            $resClassStatus = mysqli_query($conn,"SELECT * FROM `class_status` WHERE `status`='1'");
+                                            if(mysqli_num_rows($resClassStatus)>0){
+                                                while($rowClassStatus = mysqli_fetch_array($resClassStatus)){
+                                               ?>
+                                            <a class="dropdown-item w-auto <?php echo ($rowClassStatus["id"]== $row["class_status"])?"active": "";?>" href="?action=classStatus&cStatus=<?php echo $rowClassStatus["id"]?>&id=<?php echo $row["id"]?>"><?php echo $rowClassStatus["title"]?></a>
+                                           <?php
+                                                
+                                            }
+                                        }
+                                        ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                                </td>
+                                                <td><?php 
+                                                if($row["approvel"]==1){
+                                                    echo '<a href="?action=disapprove&id='.$row["id"].'" class="btn btn-sm btn-success bg-gradient">Approved</a>';
+
+                                                }else{
+                                                    echo '<a href="?action=approve&id='.$row["id"].'" class="btn btn-sm btn-danger bg-gradient">Disapproved</a>';
+                                                }
+                                                ?></td>
+                                                <td>
+                                                <?php if($row["added_by"]==1){echo "Admin";}else{echo "Editor";}?>
+                                                </td>
                                                 
                                                 <td><?php 
                                                 if($row["status"]==1){
@@ -136,7 +171,7 @@ require_once("../inc/breadcrumbs.php")
                                                 ?></td>
                                                 <td><?php echo date("D-d-M-y",strtotime($row["added_on"]));?></td>
                                                 <td>
-                                                <a href="manage-chapters?id=<?php echo $row["id"]?>" class="btn btn-sm btn-primary bg-gradient">Edit</a>
+                                                <a href="manage-classes?id=<?php echo $row["id"]?>" class="btn btn-sm btn-primary bg-gradient">Edit</a>
                                                 <?php
                                                 if($_SESSION["ADMIN_LOGIN"]["ROLE"]==1){
                                                 ?>

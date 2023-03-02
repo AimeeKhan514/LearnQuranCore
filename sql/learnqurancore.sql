@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 23, 2023 at 04:11 PM
+-- Generation Time: Mar 02, 2023 at 04:44 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -141,15 +141,15 @@ CREATE TABLE `classes` (
   `time` varchar(255) NOT NULL,
   `subcategory_id` int(11) NOT NULL,
   `chapter_id` int(11) NOT NULL,
-  `activate_time` varchar(255) NOT NULL,
-  `leave_time` varchar(255) NOT NULL,
-  `start_time` varchar(255) NOT NULL,
-  `absent_time` varchar(255) NOT NULL,
-  `end_time` varchar(255) NOT NULL,
-  `taken_time` varchar(255) NOT NULL,
-  `onleave_time` varchar(255) NOT NULL,
-  `re_schedule_day` varchar(255) NOT NULL,
-  `re_schedule_time` varchar(255) NOT NULL,
+  `activate_time` varchar(255) NOT NULL DEFAULT '---',
+  `leave_time` varchar(255) NOT NULL DEFAULT '---',
+  `start_time` varchar(255) NOT NULL DEFAULT '---',
+  `absent_time` varchar(255) NOT NULL DEFAULT '---',
+  `end_time` varchar(255) NOT NULL DEFAULT '---',
+  `taken_time` varchar(255) NOT NULL DEFAULT '---',
+  `onleave_time` varchar(255) NOT NULL DEFAULT '---',
+  `re_schedule_day` varchar(255) NOT NULL DEFAULT '---',
+  `re_schedule_time` varchar(255) NOT NULL DEFAULT '---',
   `class_status` tinyint(4) NOT NULL DEFAULT 9,
   `approvel` tinyint(4) NOT NULL DEFAULT 1,
   `added_by` int(11) NOT NULL,
@@ -157,6 +157,13 @@ CREATE TABLE `classes` (
   `added_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `trashed_on` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `classes`
+--
+
+INSERT INTO `classes` (`id`, `teacher_id`, `student_id`, `teacher_time`, `student_time`, `date`, `day`, `time`, `subcategory_id`, `chapter_id`, `activate_time`, `leave_time`, `start_time`, `absent_time`, `end_time`, `taken_time`, `onleave_time`, `re_schedule_day`, `re_schedule_time`, `class_status`, `approvel`, `added_by`, `status`, `added_on`, `trashed_on`) VALUES
+(1, 1, 1, '04:00', '21:00', '2023-03-06', 'Wednesday', '', 1, 1, '', '', '', '', '', '', '', '', '', 1, 1, 1, 1, '2023-03-02 15:43:00', '');
 
 -- --------------------------------------------------------
 
@@ -408,7 +415,7 @@ ALTER TABLE `chaptersdetails`
 -- AUTO_INCREMENT for table `classes`
 --
 ALTER TABLE `classes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `class_status`
