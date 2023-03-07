@@ -7,19 +7,9 @@ $student_id = "";
 $teacher_time = "";
 $student_time = "";
 $date = "";
-$day = "";
-$time = "";
 $subcategory_id = "";
 $chapter_id = "";
-$activate_time = "";
-$leave_time = "";
-$start_time = "";
-$absent_time = "";
-$end_time = "";
-$taken_time = "";
-$onleave_time = "";
-$re_schedule_day = "";
-$re_schedule_time = "";
+
 $added_by = "";
 
 $required = "required";
@@ -36,19 +26,10 @@ if (isset($_GET["id"]) && $_GET["id"] != "" && $_GET["id"] > 0) {
     $teacher_time = $row["teacher_time"];
     $student_time = $row["student_time"];
     $date = $row["date"];
-    $day = $row["day"];
-    $time = $row["time"];
+
     $subcategory_id = $row["subcategory_id"];
     $chapter_id = $row["chapter_id"];
-    $activate_time = $row["activate_time"];
-    $leave_time = $row["leave_time"];
-    $start_time = $row["start_time"];
-    $absent_time = $row["absent_time"];
-    $end_time = $row["end_time"];
-    $taken_time = $row["taken_time"];
-    $onleave_time = $row["onleave_time"];
-    $re_schedule_day = $row["re_schedule_day"];
-    $re_schedule_time = $row["re_schedule_time"];
+
     $added_by = $_SESSION["ADMIN_LOGIN"]["ID"];
 }
 if (isset($_POST["submit"])) {
@@ -58,25 +39,15 @@ if (isset($_POST["submit"])) {
     $teacher_time = getSaveValue($conn, $_POST["teacher_time"]);
     $student_time = getSaveValue($conn, $_POST["student_time"]);
     $date = getSaveValue($conn, $_POST["date"]);
-    $day = getSaveValue($conn, $_POST["day"]);
-    $time = getSaveValue($conn, $_POST["time"]);
     $subcategory_id = getSaveValue($conn, $_POST["subcategory_id"]);
     $chapter_id = getSaveValue($conn, $_POST["chapter_id"]);
-    $activate_time = getSaveValue($conn, $_POST["activate_time"]);
-    $leave_time = getSaveValue($conn, $_POST["leave_time"]);
-    $start_time = getSaveValue($conn, $_POST["start_time"]);
-    $absent_time = getSaveValue($conn, $_POST["absent_time"]);
-    $end_time = getSaveValue($conn, $_POST["end_time"]);
-    $taken_time = getSaveValue($conn, $_POST["taken_time"]);
-    $onleave_time = getSaveValue($conn, $_POST["onleave_time"]);
-    $re_schedule_day = getSaveValue($conn, $_POST["re_schedule_day"]);
-    $re_schedule_time = getSaveValue($conn, $_POST["re_schedule_time"]);
+
     $added_by = $_SESSION["ADMIN_LOGIN"]["ID"];
 
 
 
     if (isset($_GET["id"]) && $_GET["id"] != "" && $_GET["id"] > 0) {
-        $res = mysqli_query($conn, "UPDATE `$table` SET `teacher_id`='$teacher_id',`student_id`='$student_id',`teacher_time`='$teacher_time',`student_time`='$student_time',`date`='$date', `day`='$day',`time`='$time',`subcategory_id`='$subcategory_id',`chapter_id`='$chapter_id', `activate_time`='$activate_time',`leave_time`='$leave_time',`start_time`='$start_time',`absent_time`='$absent_time', `end_time`='$end_time',`taken_time`='$taken_time',`onleave_time`='$onleave_time',`re_schedule_day`='$re_schedule_day',`re_schedule_time`='$re_schedule_time',`added_by`='$added_by' WHERE `id`='$id'");
+        $res = mysqli_query($conn, "UPDATE `$table` SET `teacher_id`='$teacher_id',`student_id`='$student_id',`teacher_time`='$teacher_time',`student_time`='$student_time',`date`='$date',`subcategory_id`='$subcategory_id',`chapter_id`='$chapter_id', `added_by`='$added_by' WHERE `id`='$id'");
         if ($res) {
             $_SESSION["msg"] = '<div class="alert alert-success alert-dismissible fade show msg">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
@@ -88,7 +59,7 @@ if (isset($_POST["submit"])) {
         </button> <strong>Warning!</strong> Error in Updating.</div>';
         }
     } else {
-        $res = mysqli_query($conn, "INSERT INTO `$table` (`teacher_id`, `student_id`, `teacher_time`, `student_time`, `date`, `day`, `time`, `subcategory_id`, `chapter_id`, `activate_time`, `leave_time`, `start_time`, `absent_time`, `end_time`, `taken_time`, `onleave_time`, `re_schedule_day`, `re_schedule_time`, `added_by`) VALUES ('$teacher_id', '$student_id', '$teacher_time', '$student_time', '$date', '$day', '$time', '$subcategory_id', '$chapter_id', '$activate_time', '$leave_time', '$start_time', '$absent_time', '$end_time', '$taken_time', '$onleave_time', '$re_schedule_day', '$re_schedule_time', '$added_by')");
+        $res = mysqli_query($conn, "INSERT INTO `$table` (`teacher_id`, `student_id`, `teacher_time`, `student_time`, `date`,  `subcategory_id`, `chapter_id`, `added_by`) VALUES ('$teacher_id', '$student_id', '$teacher_time', '$student_time', '$date', '$subcategory_id', '$chapter_id', '$added_by')");
         if ($res) {
             $_SESSION["msg"] = '<div class="alert alert-success alert-dismissible fade show msg">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
@@ -242,29 +213,7 @@ echo $msg;
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-3">
-                                                <div class="form-group ">
-                                                    <label class="col-form-label" for="day">Day <span class="text-danger">*</span>
-                                                    </label>
-                                                    <div class="">
-                                                        <select class="form-control" id="day" name="day">
-                                                        <option value="Monday" <?php if($day=="Monday"){echo "selected";}else{echo "";}?>>Monday</option>
-
-                                                        <option value="Tuesday" <?php if($day=="Tuesday"){echo "selected";}else{echo "";}?>>Tuesday</option>
-
-                                                        <option value="Wednesday" <?php if($day=="Wednesday"){echo "selected";}else{echo "";}?>>Wednesday</option>
-
-                                                        <option value="Thursday" <?php if($day=="Thursday"){echo "selected";}else{echo "";}?>>Thursday</option>
-
-                                                        <option value="Friday" <?php if($day=="Friday"){echo "selected";}else{echo "";}?>>Friday</option>
-
-                                                        <option value="Saturday" <?php if($day=="Saturday"){echo "selected";}else{echo "";}?>>Saturday</option>
-
-                                                        <option value="Sunday" <?php if($day=="Sunday"){echo "selected";}else{echo "";}?>>Sunday</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            
                                             <div class="col-md-3">
                                                 <div class="form-group ">
                                                     <label class="col-form-label" for="subcategory_id">Course Sub Categories

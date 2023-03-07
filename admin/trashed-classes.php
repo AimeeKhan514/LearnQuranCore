@@ -1,3 +1,4 @@
+
 <?php
 require_once("../inc/admin-top.php");
 require_once("../inc/getData.php");
@@ -6,6 +7,7 @@ if(isset($_SESSION["msg"])){
     echo $_SESSION["msg"];
     unset($_SESSION["msg"]);
 }
+
 ?>
 
 <body>
@@ -61,17 +63,13 @@ require_once("../inc/breadcrumbs.php")
                             <div class="card-body">
                                <div class="text-right">
                                <a href="manage-classes" class="btn btn-sm btn-primary">Add New</a>
-                               <?php
-                                if($_SESSION["ADMIN_LOGIN"]["ROLE"]==1){
-                                ?>
-                               <a href="trashed-classes" class="btn btn-sm btn-outline-primary">Trash</a>
-                               <?php }?>
+                               <a href="classes" class="btn btn-sm btn-outline-primary">View All</a>
                                </div>
                                 <div class="table-responsive">
                                     <table class="table table-striped table-bordered zero-configuration text-capitalize">
                                         <thead>
                                             <tr>
-                                                <th>#sr</th>
+                                            <th>#sr</th>
                                                 <th>Id</th>
                                                 <th>Teacher</th>
                                                 <th>Teacher Time</th>
@@ -95,20 +93,22 @@ require_once("../inc/breadcrumbs.php")
                                                 <th>added by</th>
                                                 <th>Status</th>
                                                 <th>Added On</th>
+
+                                                <th>Trashed On</th>
                                                 <th>Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <?php
                                             $sr = 1; 
-                                            $res = mysqli_query($conn,"SELECT * FROM `$table` WHERE `trashed_on`=''");
+                                            $res = mysqli_query($conn,"SELECT * FROM `$table` WHERE `trashed_on`!=''");
 
                                             if(mysqli_num_rows($res)>0){
                                                 while($row = mysqli_fetch_array($res)){
                                                     $getName =  getName($conn,'admins',$row["added_by"]);
                                             ?>
                                             <tr>
-                                                <td><?php echo $sr;?></td>
+                                            <td><?php echo $sr;?></td>
                                                 <td><?php echo $row["id"];?></td>
                                                 <td><?php getFullName($conn,'teachers',$row["teacher_id"]);?></td>
                                                 <td><?php echo $row["teacher_time"];?></td>
@@ -180,13 +180,12 @@ require_once("../inc/breadcrumbs.php")
                                                 }
                                                 ?></td>
                                                 <td><?php echo date("D-d-M-y",strtotime($row["added_on"]));?></td>
+                                                <td><?php echo date("D-d-M-y",strtotime($row["trashed_on"]));?></td>
+                                                
                                                 <td>
-                                                <a href="manage-classes?id=<?php echo $row["id"]?>" class="btn btn-sm btn-primary bg-gradient">Edit</a>
-                                                <?php
-                                                if($_SESSION["ADMIN_LOGIN"]["ROLE"]==1){
-                                                ?>
-                                                <a href="?action=trashed&id=<?php echo $row["id"]?>" class="btn btn-sm btn-danger bg-gradient">Move To Trash</a>
-                                                <?php }?>
+                                                <a href="?action=restore&id=<?php echo $row["id"]?>" class="btn btn-sm btn-success bg-gradient">Restore</a>
+                                                <a href="?action=delete&id=<?php echo $row["id"]?>" class="btn btn-sm btn-danger bg-gradient">Del</a>
+
                                                 </td>
                                             </tr>
                                             <?php
@@ -195,6 +194,7 @@ require_once("../inc/breadcrumbs.php")
                                             }
                                             ?>
                                         </tbody>
+                                       
                                     </table>
                                 </div>
                             </div>

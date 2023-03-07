@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 02, 2023 at 04:44 PM
+-- Generation Time: Mar 07, 2023 at 04:47 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -137,8 +137,6 @@ CREATE TABLE `classes` (
   `teacher_time` varchar(255) NOT NULL,
   `student_time` varchar(255) NOT NULL,
   `date` date NOT NULL,
-  `day` varchar(255) NOT NULL,
-  `time` varchar(255) NOT NULL,
   `subcategory_id` int(11) NOT NULL,
   `chapter_id` int(11) NOT NULL,
   `activate_time` varchar(255) NOT NULL DEFAULT '---',
@@ -148,6 +146,7 @@ CREATE TABLE `classes` (
   `end_time` varchar(255) NOT NULL DEFAULT '---',
   `taken_time` varchar(255) NOT NULL DEFAULT '---',
   `onleave_time` varchar(255) NOT NULL DEFAULT '---',
+  `reschedule_time` varchar(255) NOT NULL,
   `re_schedule_day` varchar(255) NOT NULL DEFAULT '---',
   `re_schedule_time` varchar(255) NOT NULL DEFAULT '---',
   `class_status` tinyint(4) NOT NULL DEFAULT 9,
@@ -162,8 +161,8 @@ CREATE TABLE `classes` (
 -- Dumping data for table `classes`
 --
 
-INSERT INTO `classes` (`id`, `teacher_id`, `student_id`, `teacher_time`, `student_time`, `date`, `day`, `time`, `subcategory_id`, `chapter_id`, `activate_time`, `leave_time`, `start_time`, `absent_time`, `end_time`, `taken_time`, `onleave_time`, `re_schedule_day`, `re_schedule_time`, `class_status`, `approvel`, `added_by`, `status`, `added_on`, `trashed_on`) VALUES
-(1, 1, 1, '04:00', '21:00', '2023-03-06', 'Wednesday', '', 1, 1, '', '', '', '', '', '', '', '', '', 1, 1, 1, 1, '2023-03-02 15:43:00', '');
+INSERT INTO `classes` (`id`, `teacher_id`, `student_id`, `teacher_time`, `student_time`, `date`, `subcategory_id`, `chapter_id`, `activate_time`, `leave_time`, `start_time`, `absent_time`, `end_time`, `taken_time`, `onleave_time`, `reschedule_time`, `re_schedule_day`, `re_schedule_time`, `class_status`, `approvel`, `added_by`, `status`, `added_on`, `trashed_on`) VALUES
+(1, 1, 1, '01:00', '13:00', '2023-03-06', 1, 1, '2023-03-07 20:40:46', '2023-03-07 20:41:05', '2023-03-07 20:41:16', '2023-03-07 20:41:24', '2023-03-07 20:41:34', '2023-03-07 20:41:43', '2023-03-07 20:41:56', '2023-03-07 20:42:10', '---', '---', 7, 1, 1, 1, '2023-03-07 15:45:47', '');
 
 -- --------------------------------------------------------
 
@@ -223,8 +222,8 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `name`, `email`, `password`, `image`, `father_name`, `nationality`, `phone`, `gender`, `qualification`, `address`, `course_status`, `added_by`, `status`, `added_on`, `trashed_on`) VALUES
-(1, 'Student', 'Student@mail.com', 'cd41287b93a9317b6b2d1da8bec1def1', '350555891_3-DUAS.jpeg', 'StudentF', 'Pakistani', '0000000000', 2, 'CS', '&lt;p&gt;Address&lt;/p&gt;', 1, 2, 1, '2023-02-21 11:18:00', ''),
-(2, 'student2', 'student2@mail.com', 'a0b965b1344ad21b7afd6386fee756ef', '', 'student2F', 'Indian', '000000000000', 1, 'Matric', '&lt;p&gt;india&lt;/p&gt;', 0, 1, 1, '2023-02-21 11:18:48', '');
+(1, 'Student1', 'Student1@mail.com', '638e9fef50d78200b3b338dbc94588d0', '', 'F Student1', 'Indian', '', 2, '', '&lt;p&gt;USA&lt;/p&gt;', 0, 1, 1, '2023-03-07 11:04:16', ''),
+(2, 'Student2', 'Student2@mail.com', '0350b623313bc948e33f74cb67f5765b', '', 'F Student2', 'Bangali', '000000000000000', 1, '', '', 0, 1, 1, '2023-03-07 11:06:28', '');
 
 -- --------------------------------------------------------
 
@@ -299,8 +298,8 @@ CREATE TABLE `teachers` (
 --
 
 INSERT INTO `teachers` (`id`, `name`, `email`, `password`, `image`, `father_name`, `cnic`, `nationality`, `phone1`, `phone2`, `gender`, `marital_status`, `qualification`, `experience`, `address`, `bank_account_title`, `bank_name`, `bank_branch_code`, `bank_account_number`, `zoom_username`, `zoom_id`, `zoom_password`, `added_by`, `status`, `added_on`, `trashed_on`) VALUES
-(1, 'teacher1', 'teacher1@mail.com', '8f31d9f0cad22c1c4c3d6d52a18b3822', '268416464_Ahsan-Al-Qawaed.jpeg', 'Teacher Father', '00000000000', 'pakistani', '000000000000000', '000000000000000', 1, 'Single', 'BSCS', '&lt;p&gt;4 Years&lt;/p&gt;', '&lt;p&gt;address&lt;/p&gt;', 'teacher', 'HBL', '1481', '000000000000', 'teacher', '0000000000000', '000000000000', 1, 1, '2023-02-21 10:56:10', ''),
-(3, 'teacher2', 'teacher2@mail.com', '1e3b004fd3d4d8713e2476a6706a1c14', '836416072_VantageDroidCoursePage.jpg', 'teacher2f', '00000000000', 'American', '0000000000000000000', '000000000000000', 2, 'Divorced', 'BSSE', '&lt;p&gt;3 Years&lt;/p&gt;', '&lt;p&gt;address&lt;/p&gt;', 'teacher2', 'HBL2', '00000000', '000000000', 'teacher2', '0000000', '0000000000000000', 1, 1, '2023-02-21 11:10:23', '');
+(1, 'teacher1', 'teacher1@mail.com', 'f2d5ee2f3f277e09ab756431103032b0', '', 'Teacher 1 F', '123456789098', 'Pakistani', '00000000000', '', 1, 'Single', 'BSCS', '', '', '', '', '', '', '', '', '', 1, 1, '2023-03-07 10:59:49', ''),
+(2, 'teacher2', 'teacher2@mail.com', '6eeda8e51fd7e0b7e994156f40cb5d7a', '', 'F Teacher2', '09876543212345', 'American', '999999999999999', '', 2, 'Married', 'BSSE', '', '', '', '', '', '', '', '', '', 1, 1, '2023-03-07 11:01:49', '');
 
 -- --------------------------------------------------------
 
@@ -439,7 +438,7 @@ ALTER TABLE `subcategories`
 -- AUTO_INCREMENT for table `teachers`
 --
 ALTER TABLE `teachers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`

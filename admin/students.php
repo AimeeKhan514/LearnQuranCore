@@ -105,7 +105,7 @@ require_once("../inc/breadcrumbs.php")
                                                 <td><?php echo $row["password"];?></td>
                                                 
                                                 <td>
-                                                <img src="../images/dashboard/students/<?php if($row["image"]=="" || $row["image"]==null){echo "teacher.png";}else{echo $row["image"];}?>" class=" rounded-circle mr-3 max-image-60px" alt="">
+                                                <img src="../images/dashboard/students/<?php if($row["image"]=="" || $row["image"]==null){echo "student.png";}else{echo $row["image"];}?>" class=" rounded-circle mr-3 max-image-60px" alt="">
                                                 </td>
                                                 <td><?php echo $row["father_name"];?></td>
                                                 <td><?php echo $row["nationality"];?></td>

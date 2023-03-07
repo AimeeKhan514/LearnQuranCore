@@ -42,7 +42,27 @@ if(isset($_GET["action"]) && $_GET["action"]!=""){
         }
         if($_GET["action"]=="classStatus"){
             $cStatus = getSaveValue($conn, $_GET["cStatus"]);
-            mysqli_query($conn,"UPDATE `$table` SET `class_status`='$cStatus' WHERE `id`='$id'");
+            $sqlStatus = "";
+            if($cStatus==1){
+                $sqlStatus = ",`activate_time`= now() ";
+            }elseif($cStatus==2){
+                $sqlStatus = ",`leave_time`= now() ";
+            }elseif($cStatus==3){
+                $sqlStatus = ",`start_time`= now() ";
+            }elseif($cStatus==4){
+                $sqlStatus = ",`absent_time`= now() ";
+            }elseif($cStatus==5){
+                $sqlStatus = ",`end_time`= now() ";
+            }elseif($cStatus==6){
+                $sqlStatus = ",`taken_time`= now() ";
+            }elseif($cStatus==7){
+                $sqlStatus = ",`reschedule_time`= now() ";
+            }elseif($cStatus==8){
+                $sqlStatus = ",`onleave_time`= now() ";
+            }elseif($cStatus==9){
+                $sqlStatus = " ,`activate_time`='---' ,`leave_time`='---',`start_time`='---',`absent_time`='---',`end_time`='---',`taken_time`='---',`onleave_time`='---',`reschedule_time`='---' ";
+            }
+            mysqli_query($conn,"UPDATE `$table` SET `class_status`='$cStatus' $sqlStatus WHERE `id`='$id'");
             header("location:$pageName");
         }
     }

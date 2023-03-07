@@ -94,9 +94,7 @@ if(isset($_SESSION["msg"])){
                                             <div class="form-group">
                                             <label class="col-form-label" for="password">Password <span class="text-danger">*</span>
                                             </label>
-                                                <input type="password" class="form-control" placeholder="E.g. Password@123" name="password" id="password" required
-                                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$"
-                                title="The Minimum Password Length is 8 and Must contain at least 1 number, 1 uppercase, 1 lowercase, 1 Special character">
+                                                <input type="password" class="form-control" placeholder="E.g. Password@123" name="password" id="password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$" title="The Minimum Password Length is 8 and Must contain at least 1 number, 1 uppercase, 1 lowercase, 1 Special character">
                                             </div>
                                             <button class="btn login-form__btn submit w-100" name="btn_login">Login</button>
                                         </form>

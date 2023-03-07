@@ -203,7 +203,7 @@ echo $msg;
                                                     <div class="">
                                                         <input type="text" class="form-control" id="email" name="email"
                                                             placeholder="E.g. example@mail.com"
-                                                            value="<?php echo $email; ?>" <?php echo $required;?>>
+                                                            value="<?php echo $email; ?>" <?php echo $required;?> pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" title="Please Enter A Valid Email">
                                                     </div>
                                                 </div>
                                             </div>
@@ -215,7 +215,7 @@ echo $msg;
                                                     </label>
                                                     <div class="">
                                                         <input type="password" class="form-control" id="password"
-                                                            name="password" placeholder="E.g. Password@123" value="" <?php echo $required;?>>
+                                                            name="password" placeholder="E.g. Password@123" value="" <?php echo $required;?> pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,}$" title="The Minimum Password Length is 8 and Must contain at least 1 number, 1 uppercase, 1 lowercase, 1 Special character">
                                                         <input type="hidden" name="password_old"
                                                             value="<?php echo $password; ?>">
                                                     </div>
