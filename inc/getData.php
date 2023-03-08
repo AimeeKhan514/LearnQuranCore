@@ -60,7 +60,7 @@ if(isset($_GET["action"]) && $_GET["action"]!=""){
             }elseif($cStatus==8){
                 $sqlStatus = ",`onleave_time`= now() ";
             }elseif($cStatus==9){
-                $sqlStatus = " ,`activate_time`='---' ,`leave_time`='---',`start_time`='---',`absent_time`='---',`end_time`='---',`taken_time`='---',`onleave_time`='---',`reschedule_time`='---' ";
+                $sqlStatus = " ,`activate_time`='' ,`leave_time`='',`start_time`='',`absent_time`='',`end_time`='',`taken_time`='',`onleave_time`='',`reschedule_time`='' ";
             }
             mysqli_query($conn,"UPDATE `$table` SET `class_status`='$cStatus' $sqlStatus WHERE `id`='$id'");
             header("location:$pageName");

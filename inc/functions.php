@@ -82,6 +82,34 @@ function getFullName($conn, $table="", $id=""){
     }
     
 }
+function getStatus($conn, $table="",$col="", $id=""){
+    $sql = " SELECT * FROM  `$table` WHERE `id`=$id";
+    $res = mysqli_query($conn,$sql);
+    if(mysqli_num_rows($res)>0){
+        $row = mysqli_fetch_assoc($res);
+        return $row[$col];
+    }else{
+        return "---";
+    }
+    
+}
+// function get_times ($default = '19:00', $interval = '+30 minutes') {
+
+//     $output = '';
+
+//     $current = strtotime('00:00');
+//     $end = strtotime('23:59');
+
+//     while ($current <= $end) {
+//         $time = date('H:i', $current);
+//         $sel = ($time == $default) ? ' selected' : 'OK';
+
+//         $output .= "<option value=\"{$time}\"{$sel}>" . date('h.i A', $current) .'</option>';
+//         $current = strtotime($interval, $current);
+//     }
+
+//     return $output;
+// }
 function get_times ($default = '19:00', $interval = '+30 minutes') {
 
     $output = '';
@@ -90,9 +118,10 @@ function get_times ($default = '19:00', $interval = '+30 minutes') {
     $end = strtotime('23:59');
 
     while ($current <= $end) {
-        $time = date('H:i', $current);
+        $time = date('h.i A', $current);
         $sel = ($time == $default) ? ' selected' : 'OK';
 
+        $output .= "<option value='00:00' hidden>Select Time</option>";
         $output .= "<option value=\"{$time}\"{$sel}>" . date('h.i A', $current) .'</option>';
         $current = strtotime($interval, $current);
     }

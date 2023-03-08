@@ -119,24 +119,23 @@ require_once("../inc/breadcrumbs.php")
                                                 <td><?php getFullName($conn,'subcategories',$row["subcategory_id"]);?></td>
                                                 <td><?php getFullName($conn,'chapters',$row["chapter_id"]);?></td>
                                                 
-                                                <td><?php if($row["activate_time"]!="---"){echo date("l jS \of F Y h:i:s A",strtotime($row["activate_time"]));}else{echo $row["activate_time"];};?></td>
+                                                <td><?php if($row["activate_time"]!=""){echo date("l jS \of F Y h:i:s A",strtotime($row["activate_time"]));}else{echo "---";};?></td>
                                                 
-                                                <td><?php if($row["leave_time"]!="---"){echo date("l jS \of F Y h:i:s A",strtotime($row["leave_time"]));}else{echo $row["leave_time"];};?></td>
+                                                <td><?php if($row["leave_time"]!=""){echo date("l jS \of F Y h:i:s A",strtotime($row["leave_time"]));}else{echo "---";};?></td>
 
-                                                <td><?php if($row["start_time"]!="---"){echo date("l jS \of F Y h:i:s A",strtotime($row["start_time"]));}else{echo $row["start_time"];};?></td>
+                                                <td><?php if($row["start_time"]!=""){echo date("l jS \of F Y h:i:s A",strtotime($row["start_time"]));}else{echo "---";};?></td>
 
-                                                <td><?php if($row["absent_time"]!="---"){echo date("l jS \of F Y h:i:s A",strtotime($row["absent_time"]));}else{echo $row["absent_time"];};?></td>
+                                                <td><?php if($row["absent_time"]!=""){echo date("l jS \of F Y h:i:s A",strtotime($row["absent_time"]));}else{echo "---";};?></td>
 
-                                                <td><?php if($row["end_time"]!="---"){echo date("l jS \of F Y h:i:s A",strtotime($row["end_time"]));}else{echo $row["end_time"];};?></td>
+                                                <td><?php if($row["end_time"]!=""){echo date("l jS \of F Y h:i:s A",strtotime($row["end_time"]));}else{echo "---";};?></td>
 
-                                                <td><?php if($row["taken_time"]!="---"){echo date("l jS \of F Y h:i:s A",strtotime($row["taken_time"]));}else{echo $row["taken_time"];};?></td>
+                                                <td><?php if($row["taken_time"]!=""){echo date("l jS \of F Y h:i:s A",strtotime($row["taken_time"]));}else{echo "---";};?></td>
 
-                                                <td><?php if($row["onleave_time"]!="---"){echo date("l jS \of F Y h:i:s A",strtotime($row["onleave_time"]));}else{echo $row["onleave_time"];};?></td>
+                                                <td><?php if($row["onleave_time"]!=""){echo date("l jS \of F Y h:i:s A",strtotime($row["onleave_time"]));}else{echo "---";};?></td>
 
-                                                <td><?php if($row["reschedule_time"]!="---"){echo date("l jS \of F Y h:i:s A",strtotime($row["reschedule_time"]));}else{echo $row["reschedule_time"];};?></td>
-
-                                                <td><?php echo $row["re_schedule_day"];?></td>
-                                                <td><?php echo $row["re_schedule_time"];?></td>
+                                                <td><?php if($row["reschedule_time"]!=""){echo date("l jS \of F Y h:i:s A",strtotime($row["reschedule_time"]));}else{echo "---";};?></td>
+                                                <td><?php if($row["re_schedule_day"]!=""){echo date("l jS \of F Y h:i:s A",strtotime($row["re_schedule_day"]));}else{echo "---";};?></td>
+                                                <td><?php if($row["re_schedule_time"]!="00:00"){echo $row["re_schedule_time"];}else{echo "---";};?></td>
                                                 
                                                 <td>
                                                 <div class="basic-dropdown">

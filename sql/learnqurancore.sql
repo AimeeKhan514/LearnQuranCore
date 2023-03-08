@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 07, 2023 at 04:47 PM
+-- Generation Time: Mar 08, 2023 at 05:12 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -139,16 +139,16 @@ CREATE TABLE `classes` (
   `date` date NOT NULL,
   `subcategory_id` int(11) NOT NULL,
   `chapter_id` int(11) NOT NULL,
-  `activate_time` varchar(255) NOT NULL DEFAULT '---',
-  `leave_time` varchar(255) NOT NULL DEFAULT '---',
-  `start_time` varchar(255) NOT NULL DEFAULT '---',
-  `absent_time` varchar(255) NOT NULL DEFAULT '---',
-  `end_time` varchar(255) NOT NULL DEFAULT '---',
-  `taken_time` varchar(255) NOT NULL DEFAULT '---',
-  `onleave_time` varchar(255) NOT NULL DEFAULT '---',
+  `activate_time` varchar(255) NOT NULL,
+  `leave_time` varchar(255) NOT NULL,
+  `start_time` varchar(255) NOT NULL,
+  `absent_time` varchar(255) NOT NULL,
+  `end_time` varchar(255) NOT NULL,
+  `taken_time` varchar(255) NOT NULL,
+  `onleave_time` varchar(255) NOT NULL,
   `reschedule_time` varchar(255) NOT NULL,
-  `re_schedule_day` varchar(255) NOT NULL DEFAULT '---',
-  `re_schedule_time` varchar(255) NOT NULL DEFAULT '---',
+  `re_schedule_day` varchar(255) NOT NULL,
+  `re_schedule_time` varchar(255) NOT NULL,
   `class_status` tinyint(4) NOT NULL DEFAULT 9,
   `approvel` tinyint(4) NOT NULL DEFAULT 1,
   `added_by` int(11) NOT NULL,
@@ -162,7 +162,7 @@ CREATE TABLE `classes` (
 --
 
 INSERT INTO `classes` (`id`, `teacher_id`, `student_id`, `teacher_time`, `student_time`, `date`, `subcategory_id`, `chapter_id`, `activate_time`, `leave_time`, `start_time`, `absent_time`, `end_time`, `taken_time`, `onleave_time`, `reschedule_time`, `re_schedule_day`, `re_schedule_time`, `class_status`, `approvel`, `added_by`, `status`, `added_on`, `trashed_on`) VALUES
-(1, 1, 1, '01:00', '13:00', '2023-03-06', 1, 1, '2023-03-07 20:40:46', '2023-03-07 20:41:05', '2023-03-07 20:41:16', '2023-03-07 20:41:24', '2023-03-07 20:41:34', '2023-03-07 20:41:43', '2023-03-07 20:41:56', '2023-03-07 20:42:10', '---', '---', 7, 1, 1, 1, '2023-03-07 15:45:47', '');
+(1, 1, 1, '01.00 PM', '01.00 AM', '2023-03-08', 1, 2, '', '', '', '', '', '', '', '', '', '00:00', 9, 1, 1, 1, '2023-03-08 14:38:51', '');
 
 -- --------------------------------------------------------
 
@@ -222,7 +222,7 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `name`, `email`, `password`, `image`, `father_name`, `nationality`, `phone`, `gender`, `qualification`, `address`, `course_status`, `added_by`, `status`, `added_on`, `trashed_on`) VALUES
-(1, 'Student1', 'Student1@mail.com', '638e9fef50d78200b3b338dbc94588d0', '', 'F Student1', 'Indian', '', 2, '', '&lt;p&gt;USA&lt;/p&gt;', 0, 1, 1, '2023-03-07 11:04:16', ''),
+(1, 'Student1', 'Student1@mail.com', '638e9fef50d78200b3b338dbc94588d0', '', 'F Student1', 'Indian', '', 2, '', '&lt;p&gt;USA&lt;/p&gt;', 0, 1, 1, '2023-03-08 15:06:21', ''),
 (2, 'Student2', 'Student2@mail.com', '0350b623313bc948e33f74cb67f5765b', '', 'F Student2', 'Bangali', '000000000000000', 1, '', '', 0, 1, 1, '2023-03-07 11:06:28', '');
 
 -- --------------------------------------------------------

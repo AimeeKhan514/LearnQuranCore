@@ -9,7 +9,8 @@ $student_time = "";
 $date = "";
 $subcategory_id = "";
 $chapter_id = "";
-
+$re_schedule_day = "";
+$re_schedule_time = "";
 $added_by = "";
 
 $required = "required";
@@ -29,7 +30,8 @@ if (isset($_GET["id"]) && $_GET["id"] != "" && $_GET["id"] > 0) {
 
     $subcategory_id = $row["subcategory_id"];
     $chapter_id = $row["chapter_id"];
-
+    $re_schedule_day = $row["re_schedule_day"];
+    $re_schedule_time = $row["re_schedule_time"];
     $added_by = $_SESSION["ADMIN_LOGIN"]["ID"];
 }
 if (isset($_POST["submit"])) {
@@ -41,13 +43,14 @@ if (isset($_POST["submit"])) {
     $date = getSaveValue($conn, $_POST["date"]);
     $subcategory_id = getSaveValue($conn, $_POST["subcategory_id"]);
     $chapter_id = getSaveValue($conn, $_POST["chapter_id"]);
-
+    $re_schedule_day = getSaveValue($conn, $_POST["re_schedule_day"]);
+    $re_schedule_time = getSaveValue($conn, $_POST["re_schedule_time"]);
     $added_by = $_SESSION["ADMIN_LOGIN"]["ID"];
 
 
 
     if (isset($_GET["id"]) && $_GET["id"] != "" && $_GET["id"] > 0) {
-        $res = mysqli_query($conn, "UPDATE `$table` SET `teacher_id`='$teacher_id',`student_id`='$student_id',`teacher_time`='$teacher_time',`student_time`='$student_time',`date`='$date',`subcategory_id`='$subcategory_id',`chapter_id`='$chapter_id', `added_by`='$added_by' WHERE `id`='$id'");
+        $res = mysqli_query($conn, "UPDATE `$table` SET `teacher_id`='$teacher_id',`student_id`='$student_id',`teacher_time`='$teacher_time',`student_time`='$student_time',`date`='$date',`subcategory_id`='$subcategory_id',`chapter_id`='$chapter_id', `added_by`='$added_by',`re_schedule_day`='$re_schedule_day',`re_schedule_time`='$re_schedule_time' WHERE `id`='$id'");
         if ($res) {
             $_SESSION["msg"] = '<div class="alert alert-success alert-dismissible fade show msg">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
@@ -59,7 +62,7 @@ if (isset($_POST["submit"])) {
         </button> <strong>Warning!</strong> Error in Updating.</div>';
         }
     } else {
-        $res = mysqli_query($conn, "INSERT INTO `$table` (`teacher_id`, `student_id`, `teacher_time`, `student_time`, `date`,  `subcategory_id`, `chapter_id`, `added_by`) VALUES ('$teacher_id', '$student_id', '$teacher_time', '$student_time', '$date', '$subcategory_id', '$chapter_id', '$added_by')");
+        $res = mysqli_query($conn, "INSERT INTO `$table` (`teacher_id`, `student_id`, `teacher_time`, `student_time`, `date`,  `subcategory_id`, `chapter_id`, `added_by`,`re_schedule_day`,`re_schedule_time`) VALUES ('$teacher_id', '$student_id', '$teacher_time', '$student_time', '$date', '$subcategory_id', '$chapter_id', '$added_by','$re_schedule_day','$re_schedule_time')");
         if ($res) {
             $_SESSION["msg"] = '<div class="alert alert-success alert-dismissible fade show msg">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
@@ -129,7 +132,8 @@ echo $msg;
                                         <div class="row">
                                             <div class="col-md-3">
                                                 <div class="form-group ">
-                                                    <label class="col-form-label" for="teacher_id">Teachers <span class="text-danger">*</span>
+                                                    <label class="col-form-label" for="teacher_id">Teachers <span
+                                                            class="text-danger">*</span>
                                                     </label>
                                                     <div class="">
                                                         <select class="form-control" id="teacher_id" name="teacher_id">
@@ -156,11 +160,13 @@ echo $msg;
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group ">
-                                                    <label class="col-form-label" for="teacher_time">Teacher's Time <span class="text-danger">*</span>
+                                                    <label class="col-form-label" for="teacher_time">Teacher's Time
+                                                        <span class="text-danger">*</span>
                                                     </label>
                                                     <div class="">
-                                                   
-                                                        <select class="form-control" id="teacher_time" name="teacher_time">
+
+                                                        <select class="form-control" id="teacher_time"
+                                                            name="teacher_time">
                                                             <?php echo get_times($teacher_time); ?>
                                                         </select>
                                                     </div>
@@ -168,7 +174,8 @@ echo $msg;
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group ">
-                                                    <label class="col-form-label" for="student_id">Students <span class="text-danger">*</span>
+                                                    <label class="col-form-label" for="student_id">Students <span
+                                                            class="text-danger">*</span>
                                                     </label>
                                                     <div class="">
                                                         <select class="form-control" id="student_id" name="student_id">
@@ -195,10 +202,12 @@ echo $msg;
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group ">
-                                                    <label class="col-form-label" for="student_time">Student's Time <span class="text-danger">*</span>
+                                                    <label class="col-form-label" for="student_time">Student's Time
+                                                        <span class="text-danger">*</span>
                                                     </label>
                                                     <div class="">
-                                                        <select class="form-control" id="student_time" name="student_time">
+                                                        <select class="form-control" id="student_time"
+                                                            name="student_time">
                                                             <?php echo get_times($student_time); ?>
                                                         </select>
                                                     </div>
@@ -206,17 +215,19 @@ echo $msg;
                                             </div>
                                             <div class="col-md-3">
                                                 <div class="form-group ">
-                                                    <label class="col-form-label" for="date">Class Date <span class="text-danger">*</span>
+                                                    <label class="col-form-label" for="date">Class Date <span
+                                                            class="text-danger">*</span>
                                                     </label>
                                                     <div class="">
-                                                        <input type="date" class="form-control" id="date" name="date" value="<?php echo $date; ?>" <?php echo $required; ?>>
+                                                        <input type="date" class="form-control" id="date" name="date"
+                                                            value="<?php echo $date; ?>" <?php echo $required; ?>>
                                                     </div>
                                                 </div>
                                             </div>
-                                            
                                             <div class="col-md-3">
                                                 <div class="form-group ">
-                                                    <label class="col-form-label" for="subcategory_id">Course Sub Categories
+                                                    <label class="col-form-label" for="subcategory_id">Course Sub
+                                                        Categories
                                                         <span class="text-danger">*</span>
                                                     </label>
                                                     <div class="">
@@ -281,11 +292,40 @@ echo $msg;
                                                     </div>
                                                 </div>
                                             </div>
-
+                                            <div class="col-12 my-3">
+                                                <h3>Re Schedule</h3>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="re_schedule_day">Re Schedule Date
+                                                        <span class="small">(Optional)</span>
+                                                    </label>
+                                                    <div class="">
+                                                        <input type="date" class="form-control" id="re_schedule_day"
+                                                            name="re_schedule_day"
+                                                            value="<?php echo $re_schedule_day; ?>">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                            <div class="form-group ">
+                                                <label class="col-form-label" for="re_schedule_time">Re Schedule Time
+                                                    <span class="small">(Optional)</span>
+                                                </label>
+                                                <div class="">
+                                                    <select class="form-control" id="re_schedule_time"
+                                                        name="re_schedule_time">
+                                                        <?php echo get_times($re_schedule_time); ?>
+                                                    </select>
+                                                </div>
+                                            </div>
                                         </div>
+                                        </div>
+                                     
                                         <div class="form-group">
                                             <div class="col-12 p-0">
-                                                <button type="submit" class="btn btn-primary" name="submit"><?php echo $btnName; ?></button>
+                                                <button type="submit" class="btn btn-primary"
+                                                    name="submit"><?php echo $btnName; ?></button>
                                             </div>
                                         </div>
                                     </form>
@@ -323,7 +363,7 @@ echo $msg;
     <?php
     require_once("../inc/admin-bottom.php")
     ?>
-        <script>
+    <script>
     $(document).ready(function() {
         $("#subcategory_id").change(function() {
             $subcategory_id = $("#subcategory_id").val();

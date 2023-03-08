@@ -4,6 +4,13 @@ if(isset($_SESSION["msg"])){
     echo $_SESSION["msg"];
     unset($_SESSION["msg"]);
 }
+$teacher_id = $_SESSION["TEACHER_LOGIN"]["ID"];
+$date = date("Y-m-d");
+if(isset($_GET["date"]) && $_GET["date"]!=""){
+    $date = getSaveValue($conn, $_GET["date"]);
+}
+
+$res = mysqli_query($conn,"SELECT * FROM `classes` WHERE `trashed_on`='' AND `teacher_id`='$teacher_id' AND `date`='$date' AND `status`='1'");
 ?>
 
 <body>
@@ -47,135 +54,99 @@ require_once("../inc/admin-headerT.php")
         ***********************************-->
         <div class="content-body">
 
-            <div class="container-fluid mt-3">
+        <div class="container-fluid mt-3">
                 <div class="row">
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card gradient-1">
+                    <div class="col-12">
+                        <div class="card">
                             <div class="card-body">
-                                <h3 class="card-title text-white">Total Classes</h3>
-                                <div class="d-inline-block">
-                                    <h2 class="text-white">
-                                        <?php
-                                    //    echo getTotalRecords($conn, 'categories');
-                                        ?>
-                                    </h2>
-                                    <!-- <p class="text-white mb-0">Jan - March 2019</p> -->
+                                <div class="col-lg-4">
+                                    <form action="" method="get">
+                                    <h3>Search Class By Date</h3>
+                                    <div class="input-group">
+                                            <input type="date" name="date" class="form-control" value="<?php echo $date?>">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="submit">Search</button>
+                                                <a href="<?php echo $pageName?>" class="btn btn-outline-primary" style="padding-top: 10px;">Reset</a>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-                                <span class="float-right display-5 opacity-5"><i class="fa fa-bars"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card gradient-2">
-                            <div class="card-body">
-                                <h3 class="card-title text-white">Total Teachers</h3>
-                                <div class="d-inline-block">
-                                    <h2 class="text-white">
-                                        <?php
-                                    //    echo getTotalRecords($conn, 'subcategories');
-                                        ?>
-                                    </h2>
-                                    <!-- <p class="text-white mb-0">Jan - March 2019</p> -->
+                            <div class="table-responsive">
+                                    <table
+                                        class="table table-striped table-bordered zero-configuration text-capitalize text-center">
+                                        <thead>
+                                            <tr>
+                                                <th>#sr</th>
+                                                <th>Teacher Time</th>
+                                                <th>Student Time</th>
+                                                <th>Student</th>
+                                                <th>Course</th>
+                                                <th>History</th>
+                                                <th>Student status</th>
+                                                <th>Class Approvel</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php
+                                            $sr = 1; 
+                                            
+
+                                            if(mysqli_num_rows($res)>0){
+                                                while($row = mysqli_fetch_array($res)){
+                                                
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $sr;?></td>
+
+                                                <td class="font-weight-bold"><?php echo $row["teacher_time"];?></td>
+                                                
+                                                <td class="font-weight-bold"><?php echo $row["student_time"];?></td>
+                                                <td class="font-weight-bold"><?php getFullName($conn,'students',$row["student_id"]);?></td>
+                                                <td>
+                                                    <a href="course-materials-chapters?cscid=<?php echo $row["subcategory_id"];?>" target="_blank" class="btn btn-sm btn-primary">
+                                                    <?php getFullName($conn,'subcategories',$row["subcategory_id"]);?></a>
+                                                </td>
+                                                <td>
+                                                    <a href="" target="_blank" class="btn btn-sm btn-danger">History</a>
+                                                </td>
+                                                <td><?php 
+                                                $studentFeeStatus = getStatus($conn, 'students','course_status',$row["student_id"]);
+                                                if($studentFeeStatus==1){
+                                                    echo '<button class="btn btn-sm btn-info bg-gradient">Regular</button>';
+
+                                                }else{
+                                                    echo '<button class="btn btn-sm btn-warning bg-gradient">Trial</button>';
+                                                }
+                                                ?></td>
+                                                <td><?php 
+                                                if($row["approvel"]==1){
+                                                    echo '<button class="btn btn-sm btn-success bg-gradient">Approved</button>';
+
+                                                }else{
+                                                    echo '<button class="btn btn-sm btn-danger bg-gradient">Disapproved</button>';
+                                                }
+                                                ?></td>
+                                               
+                                             
+                                               <td>Action</td>
+                                                
+                                                
+                                            </tr>
+                                            <?php
+                                                 $sr++;
+                                                }
+                                            }
+                                            ?>
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <span class="float-right display-5 opacity-5"><i class="fa fa-list"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card gradient-3">
-                            <div class="card-body">
-                                <h3 class="card-title text-white">Total Students</h3>
-                                <div class="d-inline-block">
-                                    <h2 class="text-white">
-                                        <?php
-                                    //    echo getTotalRecords($conn, 'posts');
-                                        ?>
-                                    </h2>
-                                    <!-- <p class="text-white mb-0">Jan - March 2019</p> -->
-                                </div>
-                                <span class="float-right display-5 opacity-5"><i class="fa fa-copy"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <div class="card gradient-4">
-                            <div class="card-body">
-                                <h3 class="card-title text-white">Total Users</h3>
-                                <div class="d-inline-block">
-                                    <h2 class="text-white">
-                                        <?php
-                                    //    echo getTotalRecords($conn, 'users');
-                                        ?>
-                                    </h2>
-                                    <!-- <p class="text-white mb-0">Jan - March 2019</p> -->
-                                </div>
-                                <span class="float-right display-5 opacity-5"><i class="fa fa-users"></i></span>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="container-fluid">
-                <div class="row">
-                    <a href="manage-categories" class="col-lg-3">
-                        <div class="card card-widget">
-                            <div class="card-body gradient-9">
-                                <div class="media">
-                                    <span class="card-widget__icon"><i class="icon-menu"></i></span>
-                                    <div class="media-body">
-                                        <h2 class="card-widget__title">
-                                            <?php 
-                                            // echo getTotalRecords($conn, 'categories','1');?>A
-                                            <?php
-                                            //  echo getTotalRecords($conn, 'categories','0');?>D
-                                        </h2>
-                                        <h5 class="card-widget__subtitle">Add Teachers</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="manage-sub-categories" class="col-lg-3">
-                        <div class="card card-widget">
-                            <div class="card-body gradient-3">
-                                <div class="media">
-                                    <span class="card-widget__icon"><i class="icon-list"></i></span>
-                                    <div class="media-body">
-                                        <h2 class="card-widget__title">
-                                        <?php 
-                                        // echo getTotalRecords($conn, 'subcategories','1');?>A
-                                            <?php
-                                            //  echo getTotalRecords($conn, 'subcategories','0');?>D
-                                        </h2>
-                                        <h5 class="card-widget__subtitle">Add Students</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="manage-posts" class="col-lg-3">
-                        <div class="card card-widget">
-                            <div class="card-body gradient-4">
-                                <div class="media">
-                                    <span class="card-widget__icon"><i class="icon-doc"></i></span>
-                                    <div class="media-body">
-                                        <h2 class="card-widget__title">
-                                        <?php 
-                                        // echo getTotalRecords($conn, 'posts','1');?>A
-                                            <?php
-                                            //  echo getTotalRecords($conn, 'posts','0');?>D
-                                        </h2>
-                                        <h5 class="card-widget__subtitle">Add Classes</h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-
-
-                </div>
-            </div>
+        </div>
+           
             <!-- #/ container -->
         </div>
         <!--**********************************
