@@ -308,20 +308,21 @@ echo $msg;
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                            <div class="form-group ">
-                                                <label class="col-form-label" for="re_schedule_time">Re Schedule Time
-                                                    <span class="small">(Optional)</span>
-                                                </label>
-                                                <div class="">
-                                                    <select class="form-control" id="re_schedule_time"
-                                                        name="re_schedule_time">
-                                                        <?php echo get_times($re_schedule_time); ?>
-                                                    </select>
+                                                <div class="form-group ">
+                                                    <label class="col-form-label" for="re_schedule_time">Re Schedule
+                                                        Time
+                                                        <span class="small">(Optional)</span>
+                                                    </label>
+                                                    <div class="">
+                                                        <select class="form-control" id="re_schedule_time"
+                                                            name="re_schedule_time">
+                                                            <?php echo get_times($re_schedule_time); ?>
+                                                        </select>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        </div>
-                                     
+
                                         <div class="form-group">
                                             <div class="col-12 p-0">
                                                 <button type="submit" class="btn btn-primary"

@@ -30,10 +30,13 @@ if($_GET["action"]=="classStatus"){
         $sqlStatus = ",`end_time`= now() ";
     }elseif($cStatus==6){
         $sqlStatus = ",`taken_time`= now() ";
-    }elseif($cStatus==7){
-        $pageName = "reschedule";
+    }
+    elseif($cStatus==7){
+        $pageName = "reschedule?token=".md5($id)."&id=$id";
         $sqlStatus = ",`reschedule_time`= now() ";
-    }elseif($cStatus==8){
+        $cStatus = 2;
+    }
+    elseif($cStatus==8){
         $sqlStatus = ",`onleave_time`= now() ";
     }
     mysqli_query($conn,"UPDATE `classes` SET `class_status`='$cStatus' $sqlStatus WHERE `id`='$id'");

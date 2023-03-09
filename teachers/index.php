@@ -21,7 +21,7 @@ if(isset($_POST["btn_login"])){
         $_SESSION["TEACHER_LOGIN"]["ID"] = $row["id"];
         $_SESSION["TEACHER_LOGIN"]["ADDED_BY"] = $row["added_by"];
         header("location:dashboard");
-    }else{
+    }else{ 
         $msg = '<div class="alert alert-danger alert-dismissible fade show ">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
         </button> <strong>Warning!</strong> Wrong Email or Password.</div>';
