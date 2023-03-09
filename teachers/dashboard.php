@@ -11,6 +11,37 @@ if(isset($_GET["date"]) && $_GET["date"]!=""){
 }
 
 $res = mysqli_query($conn,"SELECT * FROM `classes` WHERE `trashed_on`='' AND `teacher_id`='$teacher_id' AND `date`='$date' AND `status`='1'");
+
+if(isset($_GET["action"]) && $_GET["action"]!=""){
+    if(isset($_GET["id"]) && $_GET["id"]!=""){
+        $id = getSaveValue($conn, $_GET["id"]);
+if($_GET["action"]=="classStatus"){
+    $cStatus = getSaveValue($conn, $_GET["cStatus"]);
+    $sqlStatus = "";
+    if($cStatus==1){
+        $sqlStatus = ",`activate_time`= now() ";
+    }elseif($cStatus==2){
+        $sqlStatus = ",`leave_time`= now() ";
+    }elseif($cStatus==3){
+        $sqlStatus = ",`start_time`= now() ";
+    }elseif($cStatus==4){
+        $sqlStatus = ",`absent_time`= now() ";
+    }elseif($cStatus==5){
+        $sqlStatus = ",`end_time`= now() ";
+    }elseif($cStatus==6){
+        $sqlStatus = ",`taken_time`= now() ";
+    }elseif($cStatus==7){
+        $pageName = "reschedule";
+        $sqlStatus = ",`reschedule_time`= now() ";
+    }elseif($cStatus==8){
+        $sqlStatus = ",`onleave_time`= now() ";
+    }
+    mysqli_query($conn,"UPDATE `classes` SET `class_status`='$cStatus' $sqlStatus WHERE `id`='$id'");
+    header("location:$pageName");
+}
+    }
+}
+
 ?>
 
 <body>
@@ -89,9 +120,7 @@ require_once("../inc/admin-headerT.php")
                                         </thead>
                                         <tbody>
                                             <?php
-                                            $sr = 1; 
-                                            
-
+                                            $sr = 1;
                                             if(mysqli_num_rows($res)>0){
                                                 while($row = mysqli_fetch_array($res)){
                                                 
@@ -129,7 +158,56 @@ require_once("../inc/admin-headerT.php")
                                                 ?></td>
                                                
                                              
-                                               <td>Action</td>
+                                               <td>
+                                                <?php 
+                                                 if($row["approvel"]==1){
+                                                 if($row["class_status"]==9 || $row["class_status"]==7){
+                                                    //pending 9
+                                                    //Re-schedule 7
+                                                     //Redirect To Re-schedule Page
+                                                     //Add Re-schedule Day And Time
+                                                     //Approvel Status Off 
+
+                                                    echo '<a href="?action=classStatus&cStatus=1&id='.$row["id"].'" class="btn btn-sm btn-success bg-gradient">Activate</a>
+                                                    <a href="?action=classStatus&cStatus=2&id='.$row["id"].'" class="btn btn-sm btn-outline-primary bg-gradient">Leave</a>';
+
+                                                }elseif($row["class_status"]==1){
+                                                    //Activation
+                                                    echo '<a href="?action=classStatus&cStatus=3&id='.$row["id"].'" class="btn btn-sm btn-success bg-gradient">Start</a>
+                                                    <a href="?action=classStatus&cStatus=4&id='.$row["id"].'" class="btn btn-sm btn-danger bg-gradient">Absent</a>';
+                                                }elseif($row["class_status"]==2 || $row["class_status"]==8){
+                                                    //Leave 2
+                                                    //On Leave 8
+
+                                                      //Re-schedule 7
+                                                     //Redirect To Re-schedule Page
+                                                     //Add Re-schedule Day And Time
+                                                     //Approvel Status Off
+                                                    echo '<button href="" class="btn btn-sm btn-primary disabled bg-gradient">On Leave</button>
+                                                    <a href="?action=classStatus&cStatus=7&id='.$row["id"].'" class="btn btn-sm btn-primary bg-gradient">Re-Schedule</a>';
+                                                }elseif($row["class_status"]==3){
+                                                    //Start
+                                                    echo '<a href="" class="btn btn-sm btn-primary bg-gradient">End</a>';
+                                                }elseif($row["class_status"]==4){
+                                                    //Absent
+                                                    echo '<a href="" class="btn btn-sm btn-dark disabled bg-gradient">Student Absent</a>';
+                                                }elseif($row["class_status"]==5){
+                                                    //End
+                                                    //Redirect To Remarks Page
+                                                    //Status Will be Updated to Taken(6)
+                                                    echo '<a href="" class="btn btn-sm btn-primary disabled bg-gradient">Taken</a>';
+                                                }elseif($row["class_status"]==6){
+                                                    //Taken
+                                                    echo '<a href="" class="btn btn-sm btn-primary bg-gradient disabled">Taken</a>';
+                                                }else{
+                                                    echo '<a href="" class="btn btn-sm btn-primary disabled bg-gradient">Pending</a>';
+                                                }
+
+                                            }else{
+                                                echo '<a href="" class="btn btn-sm btn-primary disabled bg-gradient">Pending</a>';
+                                            }
+                                                ?>
+                                               </td>
                                                 
                                                 
                                             </tr>

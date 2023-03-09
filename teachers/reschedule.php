@@ -1,29 +1,29 @@
 <?php
 require_once("../inc/admin-top.php");
-if(isset($_GET["id"]) && $_GET["id"]!=""){
-    $id = getSaveValue($conn, $_GET["id"]);
-    if($id == md5($_SESSION["TEACHER_LOGIN"]["ID"])){
-        $id = $_SESSION["TEACHER_LOGIN"]["ID"];
-        $res = mysqli_query($conn,"SELECT * FROM `teachers` WHERE `status`='1' AND `id`='$id'");
-        $row = mysqli_fetch_array($res);
-        $getName =  getName($conn,'admins',$row["added_by"]);
+// if(isset($_GET["id"]) && $_GET["id"]!=""){
+//     $id = getSaveValue($conn, $_GET["id"]);
+//     if($id == md5($_SESSION["TEACHER_LOGIN"]["ID"])){
+//         $id = $_SESSION["TEACHER_LOGIN"]["ID"];
+//         $res = mysqli_query($conn,"SELECT * FROM `teachers` WHERE `status`='1' AND `id`='$id'");
+//         $row = mysqli_fetch_array($res);
+//         $getName =  getName($conn,'admins',$row["added_by"]);
             
-    }else{
-        $_SESSION["msg"] = '<div class="alert alert-warning alert-dismissible fade show msg">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
-        </button> <strong>Warning! </strong> Profile Not Exist.</div>';
-        header("location:dashboard");
-    }
-}else{
-    $_SESSION["msg"] = '<div class="alert alert-warning alert-dismissible fade show msg">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
-    </button> <strong>Warning! </strong> Profile Not Exist.</div>';
-    header("location:dashboard");
-}
-if(isset($_SESSION["msgupdate"])){
-    echo $_SESSION["msgupdate"];
-    unset($_SESSION["msgupdate"]);
-}
+//     }else{
+//         $_SESSION["msg"] = '<div class="alert alert-warning alert-dismissible fade show msg">
+//         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+//         </button> <strong>Warning! </strong> Profile Not Exist.</div>';
+//         header("location:dashboard");
+//     }
+// }else{
+//     $_SESSION["msg"] = '<div class="alert alert-warning alert-dismissible fade show msg">
+//     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+//     </button> <strong>Warning! </strong> Profile Not Exist.</div>';
+//     header("location:dashboard");
+// }
+// if(isset($_SESSION["msgupdate"])){
+//     echo $_SESSION["msgupdate"];
+//     unset($_SESSION["msgupdate"]);
+// }
 ?>
 <style>
 .page-titles {

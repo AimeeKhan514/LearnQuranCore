@@ -199,7 +199,11 @@ require_once("../inc/admin-headerT.php")
                     <div class="col-lg-4 text-capitalize">
                         <div class="card mb-4 border border-primary">
                             <div class="card-body text-center">
-                                <img src="../images/dashboard/teachers/<?php echo $_SESSION["TEACHER_LOGIN"]["IMAGE"];?>" alt="avatar"
+                                <img src="../images/dashboard/teachers/<?php if ($_SESSION["TEACHER_LOGIN"]["IMAGE"] == "" || $_SESSION["TEACHER_LOGIN"]["IMAGE"] == null) {
+                                echo "teacher.png";
+                            } else {
+                                echo $_SESSION["TEACHER_LOGIN"]["IMAGE"];
+                            } ?>" alt="avatar"
                                     class="rounded-circle img-fluid" style="width: 150px; height:150px;">
                                 <h5 class="my-3"><?php echo $_SESSION["TEACHER_LOGIN"]["NAME"];?></h5>
                                 <p class="text-muted mb-1"><?php echo $row["email"];?></p>
